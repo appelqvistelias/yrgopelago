@@ -1,0 +1,1 @@
+This is a school project with the purpose to create a hotel with a booking system using HTML, CSS, PHP and JavaScript. The project will also include the usage of API.
