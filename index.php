@@ -21,6 +21,12 @@ require_once(__DIR__ . '/header.php');
                     <option value="luxury">Luxury</option>
                 </select>
 
+                <label for="startdate">Start date:</label>
+                <input type="date" id="startdate" name="startdate" min="2025-01-01" max="2025-01-31" required>
+
+                <label for="enddate">End date:</label>
+                <input type="date" id="enddate" name="enddate" min="2025-01-01" max="2025-01-31" required>
+
                 <label for="firstname">First name:</label>
                 <input type="text" id="firstname" name="firstname" required>
 
@@ -31,7 +37,6 @@ require_once(__DIR__ . '/header.php');
             </form>
         </section> <!-- #booking -->
     </div> <!-- .inner-wrapper -->
-
 </main>
 
 <?php
