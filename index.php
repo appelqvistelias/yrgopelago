@@ -3,16 +3,19 @@ require_once(__DIR__ . '/header.php');
 ?>
 
 <main>
-    <div class="inner-wrapper">
-        <section id="hero">
+    <section id="hero">
+        <div class="inner-wrapper">
             <h1>Welcome to the wonderful hotel HOTEL-NAME on the island of ISLAND-NAME</h1>
-        </section> <!-- #hero -->
+        </div> <!-- .inner-wrapper -->
+    </section> <!-- #hero -->
 
-        <section id="info">
+    <section id="info">
+        <div class="inner-wrapper">
+        </div> <!-- .inner-wrapper -->
+    </section> <!-- #info -->
 
-        </section> <!-- #info -->
-
-        <section id="booking">
+    <section id="booking">
+        <div class="inner-wrapper">
             <form method="post" action="">
                 <div class="arrival-departure">
                     <label for="startdate">Arrival:</label>
@@ -30,6 +33,7 @@ require_once(__DIR__ . '/header.php');
                         <option value="standard">Standard</option>
                         <option value="luxury">Luxury</option>
                     </select>
+
                     <div class="economy-select">
                         <input type="checkbox" id="television" name="economy-options[]" value="tv">
                         <label for="television">TV</label>
@@ -62,7 +66,6 @@ require_once(__DIR__ . '/header.php');
                         <input type="checkbox" id="pinball-game" name="luxury-options[]" value="pinball-game">
                         <label for="pinball-game">Pinball Game</label>
                     </div> <!-- .luxury-select -->
-
                 </div> <!-- .room-selection -->
 
                 <div class="booker">
@@ -76,10 +79,27 @@ require_once(__DIR__ . '/header.php');
                     <input type="text" id="transfer-code" name="transfer-code" required>
                 </div> <!-- .booker -->
 
+                <div class="price">
+                    <div>
+                        <p>Room: </p>
+                        <p class="room-price"></p>
+                    </div>
+
+                    <div>
+                        <p>Features: </p>
+                        <p class="features-price"></p>
+                    </div>
+
+                    <div>
+                        <p>Total: </p>
+                        <p class="total-price"></p>
+                    </div>
+                </div> <!-- .price -->
+
                 <button type="submit">Submit</button>
             </form>
-        </section> <!-- #booking -->
-    </div> <!-- .inner-wrapper -->
+        </div> <!-- .inner-wrapper -->
+    </section> <!-- #booking -->
 </main>
 
 <?php

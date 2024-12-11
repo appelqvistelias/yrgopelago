@@ -22,7 +22,22 @@ function handleRoomSelection(e) {
 
 roomDropdown.addEventListener('change', handleRoomSelection);
 
-handleRoomSelection({ target: roomDropdown });
+// Price
+    const roomPrice = document.querySelector('.room-price');
+    const featuresPrice = document.querySelector('.features-price');
+    const totalPrice = document.querySelector('.total-price');
+
+    function priceCalculator(e) {
+        const selectedRoom = e.target.value;
+
+        if (selectedRoom === 'economy') {
+            roomPrice.textContent = '$1'
+        } else if (selectedRoom === 'standard') {
+            roomPrice.textContent = '$2'
+        } else if (selectedRoom === 'luxury') {
+            roomPrice.textContent = '$4'
+        }
+    }
 
 // Booking
 document.querySelector('form').addEventListener('submint', function(event) {
@@ -41,7 +56,7 @@ document.querySelector('form').addEventListener('submint', function(event) {
         transferCode: document.querySelector('#transfer-code').value
     };
 
-    // Skicka iväg eller paketera datan för att kunna användas.
+    // TODO: Skicka iväg eller paketera datan för att kunna användas.
 });
 
 // Function to fetch checkbox values
@@ -53,3 +68,4 @@ function getCheckedOptions(option) {
 }
 
 // Function to send data to server
+// TODO
