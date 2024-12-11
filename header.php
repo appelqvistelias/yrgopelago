@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="style/global.css">
     <link rel="stylesheet" href="style/typography.css">
+    <link rel="stylesheet" href="style/style.css">
 
     <title>Yrgopelago</title>
 </head>
