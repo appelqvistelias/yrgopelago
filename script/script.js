@@ -1,4 +1,4 @@
-// Handles the room feature display
+// Room features display
 const roomDropdown = document.querySelector('#room');
 const economySelect = document.querySelector('.economy-select');
 const standardSelect = document.querySelector('.standard-select');
