@@ -23,3 +23,33 @@ function handleRoomSelection(e) {
 roomDropdown.addEventListener('change', handleRoomSelection);
 
 handleRoomSelection({ target: roomDropdown });
+
+// Booking
+document.querySelector('form').addEventListener('submint', function(event) {
+    event.preventDefault();
+
+    // Creates an object of the booker
+    const bookingData = {
+        startdate: document.querySelector('#startdate').value,
+        enddate: document.querySelector('#enddate').value,
+        roomType: document.querySelector('#room').value,
+        economyOptions: getCheckedOptions('economy-options[]'),
+        standardOptions: getCheckedOptions('standard-options[]'),
+        luxuryOptions: getCheckedOptions('luxury-options[]'),
+        firstname: document.querySelector('#firstname').value,
+        lastname: document.querySelector('#lastname').value,
+        transferCode: document.querySelector('#transfer-code').value
+    };
+
+    // Skicka iväg eller paketera datan för att kunna användas.
+});
+
+// Function to fetch checkbox values
+function getCheckedOptions(option) {
+    const checkboxes = document.querySelectorAll(`input[name="${option}"]:checked`);
+    const values = [];
+    checkboxes.forEach(checkbox => values.push(checkbox.value));
+    return values;
+}
+
+// Function to send data to server
