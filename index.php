@@ -14,9 +14,18 @@ require_once(__DIR__ . '/header.php');
 
         <section id="booking">
             <form method="post" action="">
+                <div class="arrival-departure">
+                    <label for="startdate">Arrival:</label>
+                    <input type="date" id="startdate" name="startdate" min="2025-01-01" max="2025-01-31" required>
+
+                    <label for="enddate">Departure:</label>
+                    <input type="date" id="enddate" name="enddate" min="2025-01-01" max="2025-01-31" required>
+                </div> <!-- .arrival-departure -->
+
                 <div class="room-selection">
                     <label for="room">Select room type:</label>
                     <select id="room" name="room" required>
+                        <option value="" disabled selected>Room Type</option>
                         <option value="economy">Economy</option>
                         <option value="standard">Standard</option>
                         <option value="luxury">Luxury</option>
@@ -54,18 +63,18 @@ require_once(__DIR__ . '/header.php');
                         <label for="pinball-game">Pinball Game</label>
                     </div> <!-- .luxury-select -->
 
-                </div>
-                <label for="startdate">Start date:</label>
-                <input type="date" id="startdate" name="startdate" min="2025-01-01" max="2025-01-31" required>
+                </div> <!-- .room-selection -->
 
-                <label for="enddate">End date:</label>
-                <input type="date" id="enddate" name="enddate" min="2025-01-01" max="2025-01-31" required>
+                <div class="booker">
+                    <label for="firstname">First name:</label>
+                    <input type="text" id="firstname" name="firstname" required>
 
-                <label for="firstname">First name:</label>
-                <input type="text" id="firstname" name="firstname" required>
+                    <label for="lastname">Last name:</label>
+                    <input type="text" id="lastname" name="lastname" required>
 
-                <label for="lastname">Last name:</label>
-                <input type="text" id="lastname" name="lastname" required>
+                    <label for="transfer-code">Transfer Code:</label>
+                    <input type="text" id="transfer-code" name="transfer-code" required>
+                </div> <!-- .booker -->
 
                 <button type="submit">Submit</button>
             </form>
