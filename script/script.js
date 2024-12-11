@@ -22,22 +22,35 @@ function handleRoomSelection(e) {
 
 roomDropdown.addEventListener('change', handleRoomSelection);
 
-// Price
-    const roomPrice = document.querySelector('.room-price');
-    const featuresPrice = document.querySelector('.features-price');
-    const totalPrice = document.querySelector('.total-price');
+// Price calculations
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-    function priceCalculator(e) {
-        const selectedRoom = e.target.value;
+const roomPriceElement = document.querySelector('.room-price');
+const featuresPriceElement = document.querySelector('.features-price');
+const totalPriceElement = document.querySelector('.total-price');
 
-        if (selectedRoom === 'economy') {
-            roomPrice.textContent = '$1'
-        } else if (selectedRoom === 'standard') {
-            roomPrice.textContent = '$2'
-        } else if (selectedRoom === 'luxury') {
-            roomPrice.textContent = '$4'
+function calculatePrices() {
+    const selectedRoomOption = roomDropdown.options[roomDropdown.selectedIndex];
+    const roomPrice = parseInt(selectedRoomOption.getAttribute('data-price')) || 0;
+
+    let featuresPrice = 0;
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            featuresPrice += parseInt(checkbox.getAttribute('data-price')) || 0;
         }
-    }
+    });
+
+    const totalPrice = roomPrice + featuresPrice;
+
+    roomPriceElement.textContent = roomPrice;
+    featuresPriceElement.textContent = featuresPrice;
+    totalPriceElement.textContent = totalPrice;
+}
+
+roomDropdown.addEventListener('change', calculatePrices);
+checkboxes.forEach(checkbox => checkbox.addEventListener('change', calculatePrices));
+
+calculatePrices();
 
 // Booking
 document.querySelector('form').addEventListener('submint', function(event) {

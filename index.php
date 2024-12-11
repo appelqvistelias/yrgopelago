@@ -29,41 +29,41 @@ require_once(__DIR__ . '/header.php');
                     <label for="room">Select room type:</label>
                     <select id="room" name="room" required>
                         <option value="" disabled selected>Room Type</option>
-                        <option value="economy">Economy</option>
-                        <option value="standard">Standard</option>
-                        <option value="luxury">Luxury</option>
+                        <option value="economy" data-price="1">Economy</option>
+                        <option value="standard" data-price="2">Standard</option>
+                        <option value="luxury" data-price="4">Luxury</option>
                     </select>
 
                     <div class="economy-select">
-                        <input type="checkbox" id="television" name="economy-options[]" value="tv">
+                        <input type="checkbox" id="television" name="economy-options[]" value="tv" data-price="1">
                         <label for="television">TV</label>
 
-                        <input type="checkbox" id="waterboiler" name="economy-options[]" value="waterboiler">
+                        <input type="checkbox" id="waterboiler" name="economy-options[]" value="waterboiler" data-price="1">
                         <label for="waterboiler">Waterboiler</label>
 
-                        <input type="checkbox" id="minibar" name="economy-options[]" value="minibar">
+                        <input type="checkbox" id="minibar" name="economy-options[]" value="minibar" data-price="2">
                         <label for="minibar">Minibar</label>
                     </div> <!-- .economy-select -->
 
                     <div class="standard-select">
-                        <input type="checkbox" id="coffemaker" name="standard-options[]" value="coffemaker">
+                        <input type="checkbox" id="coffemaker" name="standard-options[]" value="coffemaker" data-price="1">
                         <label for="coffemaker">Coffemaker</label>
 
-                        <input type="checkbox" id="bathtub" name="standard-options[]" value="bathtub">
+                        <input type="checkbox" id="bathtub" name="standard-options[]" value="bathtub" data-price="2">
                         <label for="bathtub">Bathtub</label>
 
-                        <input type="checkbox" id="yatzy" name="standard-options[]" value="yatzy">
+                        <input type="checkbox" id="yatzy" name="standard-options[]" value="yatzy" data-price="1">
                         <label for="yatzy">Yatzy</label>
                     </div> <!-- .standard-select -->
 
                     <div class="luxury-select">
-                        <input type="checkbox" id="sauna" name="luxury-options[]" value="sauna">
+                        <input type="checkbox" id="sauna" name="luxury-options[]" value="sauna" data-price="3">
                         <label for="sauna">Sauna</label>
 
-                        <input type="checkbox" id="ps5" name="luxury-options[]" value="ps5">
+                        <input type="checkbox" id="ps5" name="luxury-options[]" value="ps5" data-price="2">
                         <label for="ps5">PlayStation 5</label>
 
-                        <input type="checkbox" id="pinball-game" name="luxury-options[]" value="pinball-game">
+                        <input type="checkbox" id="pinball-game" name="luxury-options[]" value="pinball-game" data-price="2">
                         <label for="pinball-game">Pinball Game</label>
                     </div> <!-- .luxury-select -->
                 </div> <!-- .room-selection -->
@@ -82,17 +82,17 @@ require_once(__DIR__ . '/header.php');
                 <div class="price">
                     <div>
                         <p>Room: </p>
-                        <p class="room-price"></p>
+                        <p class="room-price">0</p>
                     </div>
 
                     <div>
                         <p>Features: </p>
-                        <p class="features-price"></p>
+                        <p class="features-price">0</p>
                     </div>
 
                     <div>
                         <p>Total: </p>
-                        <p class="total-price"></p>
+                        <p class="total-price">0</p>
                     </div>
                 </div> <!-- .price -->
 
