@@ -1,5 +1,7 @@
 <?php
 require_once(__DIR__ . '/header.php');
+
+require_once(__DIR__ . '/booking.php');
 ?>
 
 <main>
@@ -13,55 +15,6 @@ require_once(__DIR__ . '/header.php');
         <div class="inner-wrapper">
         </div> <!-- .inner-wrapper -->
     </section> <!-- #info -->
-
-    <?php if (isset($_POST)) {
-        var_dump($_POST);
-
-        $startDate = new DateTime(trim(htmlspecialchars($_POST['startdate'])));
-        $endDate = new DateTime(trim(htmlspecialchars($_POST['enddate'])));
-        $selectedRoom = trim(htmlspecialchars($_POST['room']));
-        $selectedFeatures = $_POST['features-options'];
-        $firstName = trim(htmlspecialchars($_POST['firstname']));
-        $lastName = trim(htmlspecialchars($_POST['lastname']));
-        $transferCode = trim(htmlspecialchars($_POST['transferCode']));
-
-        $totalCost = 0;
-
-        if ($selectedRoom === 'economy') {
-            $totalCost = 1;
-        } elseif ($selectedRoom === 'standard') {
-            $totalCost = 2;
-        } elseif ($selectedRoom === 'luxury') {
-            $totalCost = 4;
-        }
-
-        // See if transferCode is valid
-        function isValidUuid(string $uuid): bool
-        {
-
-            if (!is_string($uuid) || (preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/', $uuid) !== 1)) {
-                return false;
-            }
-
-            return true;
-        }
-
-        // if (isset($transferCode, $totalCost)) {
-        //     $transferData = json_decode(file_get_contents(__DIR__ . '/guests/guests.json'), true);
-
-        //     $transferData[] = [
-        //         'trasfercode' => $transferCode,
-        //         'transfercost' => $totalCost
-        //     ];
-
-        //     $transferData = json_encode($transferData);
-        //     file_put_contents(__DIR__ . '/guests/guests.json', $transferData);
-
-        //     header('Content-Type: application/json');
-
-        //     echo $transferData;
-        // }
-    } ?>
 
     <section id="booking">
         <div class="inner-wrapper">
