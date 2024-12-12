@@ -7,6 +7,8 @@ const luxurySelect = document.querySelector('.luxury-select');
 function handleRoomSelection(e) {
     const selectedRoom = e.target.value;
 
+    clearCheckboxes();
+
     economySelect.style.display = 'none';
     standardSelect.style.display = 'none';
     luxurySelect.style.display = 'none';
@@ -18,6 +20,12 @@ function handleRoomSelection(e) {
     } else if (selectedRoom === 'luxury') {
         luxurySelect.style.display = 'block';
     }
+}
+
+// Clear all checkboxes when switching room
+function clearCheckboxes() {
+    const allCheckboxes = document.querySelectorAll('.economy-select input[type="checkbox"], .standard-select input[type="checkbox"], .luxury-select input[type="checkbox"]');
+    allCheckboxes.forEach(checkbox => checkbox.checked = false);
 }
 
 roomDropdown.addEventListener('change', handleRoomSelection);
