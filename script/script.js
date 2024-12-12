@@ -1,36 +1,5 @@
-// Room features display
-const roomDropdown = document.querySelector('#room');
-const economySelect = document.querySelector('.economy-select');
-const standardSelect = document.querySelector('.standard-select');
-const luxurySelect = document.querySelector('.luxury-select');
-
-function handleRoomSelection(e) {
-    const selectedRoom = e.target.value;
-
-    clearCheckboxes();
-
-    economySelect.style.display = 'none';
-    standardSelect.style.display = 'none';
-    luxurySelect.style.display = 'none';
-
-    if (selectedRoom === 'economy') {
-        economySelect.style.display = 'block';
-    } else if (selectedRoom === 'standard') {
-        standardSelect.style.display = 'block';
-    } else if (selectedRoom === 'luxury') {
-        luxurySelect.style.display = 'block';
-    }
-}
-
-// Clear all checkboxes when switching room
-function clearCheckboxes() {
-    const allCheckboxes = document.querySelectorAll('.economy-select input[type="checkbox"], .standard-select input[type="checkbox"], .luxury-select input[type="checkbox"]');
-    allCheckboxes.forEach(checkbox => checkbox.checked = false);
-}
-
-roomDropdown.addEventListener('change', handleRoomSelection);
-
 // Price calculations
+const roomDropdown = document.querySelector('#room');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
 const roomPriceElement = document.querySelector('.room-price');
@@ -60,33 +29,21 @@ checkboxes.forEach(checkbox => checkbox.addEventListener('change', calculatePric
 
 calculatePrices();
 
-// Booking
-document.querySelector('form').addEventListener('submint', function(event) {
-    event.preventDefault();
+// // Transfer JSON
 
-    // Creates an object of the booker
-    const bookingData = {
-        startdate: document.querySelector('#startdate').value,
-        enddate: document.querySelector('#enddate').value,
-        roomType: document.querySelector('#room').value,
-        economyOptions: getCheckedOptions('economy-options[]'),
-        standardOptions: getCheckedOptions('standard-options[]'),
-        luxuryOptions: getCheckedOptions('luxury-options[]'),
-        firstname: document.querySelector('#firstname').value,
-        lastname: document.querySelector('#lastname').value,
-        transferCode: document.querySelector('#transfer-code').value
-    };
+// const form = document.querySelector('form');
 
-    // TODO: Skicka iväg eller paketera datan för att kunna användas.
-});
+// form.addEventListener('submit', (event) => {
+//     event.preventDefault(); // Prevent the default form submission
 
-// Function to fetch checkbox values
-function getCheckedOptions(option) {
-    const checkboxes = document.querySelectorAll(`input[name="${option}"]:checked`);
-    const values = [];
-    checkboxes.forEach(checkbox => values.push(checkbox.value));
-    return values;
-}
-
-// Function to send data to server
-// TODO
+//     const formData = new FormData(form);
+//     fetch('https://yrgopelago.se/centralbank/transferCode', {
+//         method: 'POST',
+//         body: formData,
+//     })
+//     .then((response) => response.json())
+//     .then((data) => {
+//         console.log(data); // Log the response data to the console
+//     })
+//     .catch(console.error); // Handle any errors in the fetch process
+// });

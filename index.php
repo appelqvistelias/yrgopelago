@@ -14,9 +14,47 @@ require_once(__DIR__ . '/header.php');
         </div> <!-- .inner-wrapper -->
     </section> <!-- #info -->
 
+    <?php if (isset($_POST)) {
+        var_dump($_POST);
+
+        $startDate = new DateTime(trim(htmlspecialchars($_POST['startdate'])));
+        $endDate = new DateTime(trim(htmlspecialchars($_POST['enddate'])));
+        $selectedRoom = trim(htmlspecialchars($_POST['room']));
+        $selectedFeatures = $_POST['features-options'];
+        $firstName = trim(htmlspecialchars($_POST['firstname']));
+        $lastName = trim(htmlspecialchars($_POST['lastname']));
+        $transferCode = trim(htmlspecialchars($_POST['transferCode']));
+
+        $totalCost = 0;
+
+        if ($selectedRoom === 'economy') {
+            $totalCost = 1;
+        } elseif ($selectedRoom === 'standard') {
+            $totalCost = 2;
+        } elseif ($selectedRoom === 'luxury') {
+            $totalCost = 4;
+        }
+
+        // if (isset($transferCode, $totalCost)) {
+        //     $transferData = json_decode(file_get_contents(__DIR__ . '/guests/guests.json'), true);
+
+        //     $transferData[] = [
+        //         'trasfercode' => $transferCode,
+        //         'transfercost' => $totalCost
+        //     ];
+
+        //     $transferData = json_encode($transferData);
+        //     file_put_contents(__DIR__ . '/guests/guests.json', $transferData);
+
+        //     header('Content-Type: application/json');
+
+        //     echo $transferData;
+        // }
+    } ?>
+
     <section id="booking">
         <div class="inner-wrapper">
-            <form method="post" action="">
+            <form method="post" action="index.php">
                 <div class="arrival-departure">
                     <label for="startdate">Arrival:</label>
                     <input type="date" id="startdate" name="startdate" min="2025-01-01" max="2025-01-31" required>
@@ -34,38 +72,16 @@ require_once(__DIR__ . '/header.php');
                         <option value="luxury" data-price="4">Luxury</option>
                     </select>
 
-                    <div class="economy-select">
-                        <input type="checkbox" id="television" name="economy-options[]" value="tv" data-price="1">
-                        <label for="television">TV</label>
-
-                        <input type="checkbox" id="waterboiler" name="economy-options[]" value="waterboiler" data-price="1">
-                        <label for="waterboiler">Waterboiler</label>
-
-                        <input type="checkbox" id="minibar" name="economy-options[]" value="minibar" data-price="2">
-                        <label for="minibar">Minibar</label>
-                    </div> <!-- .economy-select -->
-
-                    <div class="standard-select">
-                        <input type="checkbox" id="coffemaker" name="standard-options[]" value="coffemaker" data-price="1">
-                        <label for="coffemaker">Coffemaker</label>
-
-                        <input type="checkbox" id="bathtub" name="standard-options[]" value="bathtub" data-price="2">
+                    <div class="features-select">
+                        <input type="checkbox" id="bathtub" name="features-options[]" value="bathtub" data-price="1">
                         <label for="bathtub">Bathtub</label>
 
-                        <input type="checkbox" id="yatzy" name="standard-options[]" value="yatzy" data-price="1">
-                        <label for="yatzy">Yatzy</label>
-                    </div> <!-- .standard-select -->
-
-                    <div class="luxury-select">
-                        <input type="checkbox" id="sauna" name="luxury-options[]" value="sauna" data-price="3">
-                        <label for="sauna">Sauna</label>
-
-                        <input type="checkbox" id="ps5" name="luxury-options[]" value="ps5" data-price="2">
-                        <label for="ps5">PlayStation 5</label>
-
-                        <input type="checkbox" id="pinball-game" name="luxury-options[]" value="pinball-game" data-price="2">
+                        <input type="checkbox" id="pinball-game" name="features-options[]" value="pinball-game" data-price="2">
                         <label for="pinball-game">Pinball Game</label>
-                    </div> <!-- .luxury-select -->
+
+                        <input type="checkbox" id="sauna" name="features-options[]" value="sauna" data-price="3">
+                        <label for="sauna">Sauna</label>
+                    </div> <!-- .features-select -->
                 </div> <!-- .room-selection -->
 
                 <div class="booker">
@@ -75,8 +91,8 @@ require_once(__DIR__ . '/header.php');
                     <label for="lastname">Last name:</label>
                     <input type="text" id="lastname" name="lastname" required>
 
-                    <label for="transfer-code">Transfer Code:</label>
-                    <input type="text" id="transfer-code" name="transfer-code" required>
+                    <label for="transferCode">Transfer Code:</label>
+                    <input type="text" id="transferCode" name="transferCode" required>
                 </div> <!-- .booker -->
 
                 <div class="price">
