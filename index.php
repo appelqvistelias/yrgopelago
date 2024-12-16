@@ -37,13 +37,13 @@ require_once(__DIR__ . '/booking.php');
                     </select>
 
                     <div class="features-select">
-                        <input type="checkbox" id="bathtub" name="features-options[]" value="bathtub" data-price="1">
+                        <input type="checkbox" id="bathtub" name="features-options[]" value="1">
                         <label for="bathtub">Bathtub</label>
 
-                        <input type="checkbox" id="pinball-game" name="features-options[]" value="pinball-game" data-price="2">
+                        <input type="checkbox" id="pinball-game" name="features-options[]" value="2">
                         <label for="pinball-game">Pinball Game</label>
 
-                        <input type="checkbox" id="sauna" name="features-options[]" value="sauna" data-price="3">
+                        <input type="checkbox" id="sauna" name="features-options[]" value="3">
                         <label for="sauna">Sauna</label>
                     </div> <!-- .features-select -->
                 </div> <!-- .room-selection -->

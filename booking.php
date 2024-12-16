@@ -17,41 +17,34 @@ try {
             throw new Exception("Invalid date range selected.");
         }
 
-        $statement = $database->prepare("SELECT id FROM room_types WHERE type = :roomType");
-        $statement->bindParam(':roomType', $selectedRoom, PDO::PARAM_STR);
-        $statement->execute();
-        $roomTypeId = $statement->fetchColumn();
-
-        if (!$roomTypeId) {
-            throw new Exception("Invalid room type selected.");
-        }
-
+        // Add booking to the bookings table
         $statement = $database->prepare('INSERT INTO bookings (first_name, last_name, start_date, end_date, room_type_id, transfer_code) VALUES (:firstName, :lastName, :startDate, :endDate, :roomTypeId, :transferCode)');
-        $statement->bindParam(':firstName', $firstName, PDO::PARAM_STR);
-        $statement->bindParam(':lastName', $lastName, PDO::PARAM_STR);
-        $statement->bindValue(':startDate', $startDate->format('Y-m-d'), PDO::PARAM_STR);
-        $statement->bindValue(':endDate', $endDate->format('Y-m-d'), PDO::PARAM_STR);
-        $statement->bindValue(':roomTypeId', $roomTypeId, PDO::PARAM_INT);  // Ensure valid room type ID
-        $statement->bindParam(':transferCode', $transferCode, PDO::PARAM_STR);
+        $statement->bindParam(':firstName', $firstName);
+        $statement->bindParam(':lastName', $lastName);
+        $statement->bindValue(':startDate', $startDate->format('Y-m-d'));
+        $statement->bindValue(':endDate', $endDate->format('Y-m-d'));
+        $statement->bindValue(':roomTypeId', $selectedRoom);
+        $statement->bindParam(':transferCode', $transferCode);
         $statement->execute();
 
         $bookingId = $database->lastInsertId();
 
+        // Array connecting features to booking ID
+        $bookedFeatures = [];
+        $featuresInsert = "";
+
         foreach ($selectedFeatures as $feature) {
-            $statement = $database->prepare("SELECT id, price FROM features WHERE name = :featureName");
-            $statement->bindParam(':featureName', $feature, PDO::PARAM_STR);
-            $statement->execute();
-            $featureResult = $statement->fetch(PDO::FETCH_ASSOC);
-
-            if ($featureResult) {
-                $statement = $database->prepare('INSERT INTO booking_features (booking_id, feature_id) VALUES (:bookingId, :featureId)');
-                $statement->bindParam(':bookingId', $bookingId, PDO::PARAM_INT);
-                $statement->bindParam(':featureId', $featureResult['id'], PDO::PARAM_INT);
-                $statement->execute();
-
-                $totalCost += $featureResult['price'];
-            }
+            $bookedFeatures[] = ['booking_id' => $bookingId, 'feature' => $feature];
         }
+
+        foreach ($bookedFeatures as $insert) {
+            $query = "INSERT INTO booking_features (booking_id, feature_id) VALUES (:featuresInsert)";
+            $featuresInsert = $featuresInsert .=  $insert['booking_id'] .  ", " . $insert['feature'];
+        }
+
+        $statement = $database->prepare($query);
+        $statement->bindParam(':featuresInsert', $featuresInsert);
+        $statement->execute();
 
         echo "Booking successfully saved! Total cost: $totalCost.";
     } else {
