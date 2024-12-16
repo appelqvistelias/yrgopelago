@@ -7,7 +7,7 @@ require_once(__DIR__ . '/booking.php');
 <main>
     <section id="hero">
         <div class="inner-wrapper">
-            <h1>Welcome to the wonderful hotel HOTEL-NAME on the island of ISLAND-NAME</h1>
+            <h1>Welcome to the wonderful Backend Hotel on Main Frame Island</h1>
         </div> <!-- .inner-wrapper -->
     </section> <!-- #hero -->
 
@@ -31,9 +31,9 @@ require_once(__DIR__ . '/booking.php');
                     <label for="room">Select room type:</label>
                     <select id="room" name="room" required>
                         <option value="" disabled selected>Room Type</option>
-                        <option value="economy" data-price="1">Economy</option>
-                        <option value="standard" data-price="2">Standard</option>
-                        <option value="luxury" data-price="4">Luxury</option>
+                        <option value="1" data-price="1">Economy</option>
+                        <option value="2" data-price="2">Standard</option>
+                        <option value="3" data-price="4">Luxury</option>
                     </select>
 
                     <div class="features-select">
