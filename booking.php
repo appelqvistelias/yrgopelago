@@ -1,4 +1,8 @@
 <?php
+
+declare(strict_types=1);
+
+// Insert booking into database
 try {
     $database = new PDO('sqlite:database/bookings.db');
     $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -17,6 +21,10 @@ try {
             throw new Exception("Invalid date range selected.");
         }
 
+        // Calculate total number of days
+        $dateDifference = $startDate->diff($endDate);
+        $totalDays = $dateDifference->days + 1;
+
         // Add booking to the bookings table
         $statement = $database->prepare('INSERT INTO bookings (first_name, last_name, start_date, end_date, room_type_id, transfer_code) VALUES (:firstName, :lastName, :startDate, :endDate, :roomTypeId, :transferCode)');
         $statement->bindParam(':firstName', $firstName);
@@ -29,7 +37,7 @@ try {
 
         $bookingId = $database->lastInsertId();
 
-        // Array connecting features to booking ID
+        // Connecting features to booking ID
         $bookedFeatures = [];
 
         foreach ($selectedFeatures as $feature) {
@@ -44,7 +52,30 @@ try {
             $statement->execute();
         }
 
-        echo "Booking successfully saved!";
+        // Calculate total cost
+        $totalCost = 0;
+
+        for ($i = 0; $i < $totalDays; $i++) {
+            if ($selectedRoom == 1) {
+                $totalCost += 1;
+            } elseif ($selectedRoom == 2) {
+                $totalCost += 2;
+            } elseif ($selectedRoom == 3) {
+                $totalCost += 4;
+            }
+        }
+
+        foreach ($selectedFeatures as $feature) {
+            if ($feature == 1) {
+                $totalCost += 1;
+            } elseif ($feature == 2) {
+                $totalCost += 2;
+            } elseif ($feature == 3) {
+                $totalCost += 3;
+            }
+        }
+
+        echo "Booking successfully saved! Your total is $totalCost.";
     } else {
         echo "Invalid request method.";
     }
@@ -64,19 +95,3 @@ function isValidUuid(string $uuid): bool
 
     return true;
 }
-
-// if (isset($transferCode, $totalCost)) {
-// $transferData = json_decode(file_get_contents(__DIR__ . '/guests/guests.json'), true);
-
-// $transferData[] = [
-// 'trasfercode' => $transferCode,
-// 'transfercost' => $totalCost
-// ];
-
-// $transferData = json_encode($transferData);
-// file_put_contents(__DIR__ . '/guests/guests.json', $transferData);
-
-// header('Content-Type: application/json');
-
-// echo $transferData;
-// }
