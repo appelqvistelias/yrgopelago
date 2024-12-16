@@ -31,22 +31,20 @@ try {
 
         // Array connecting features to booking ID
         $bookedFeatures = [];
-        $featuresInsert = "";
 
         foreach ($selectedFeatures as $feature) {
             $bookedFeatures[] = ['booking_id' => $bookingId, 'feature' => $feature];
         }
 
-        foreach ($bookedFeatures as $insert) {
-            $query = "INSERT INTO booking_features (booking_id, feature_id) VALUES (:featuresInsert)";
-            $featuresInsert = $featuresInsert .=  $insert['booking_id'] .  ", " . $insert['feature'];
+        $statement = $database->prepare('INSERT INTO booking_features (booking_id, feature_id) VALUES (:bookingId, :featureId);');
+
+        foreach ($bookedFeatures as $booking) {
+            $statement->bindParam(':bookingId', $booking['booking_id']);
+            $statement->bindParam(':featureId', $booking['feature']);
+            $statement->execute();
         }
 
-        $statement = $database->prepare($query);
-        $statement->bindParam(':featuresInsert', $featuresInsert);
-        $statement->execute();
-
-        echo "Booking successfully saved! Total cost: $totalCost.";
+        echo "Booking successfully saved!";
     } else {
         echo "Invalid request method.";
     }
