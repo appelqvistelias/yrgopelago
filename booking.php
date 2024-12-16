@@ -75,6 +75,11 @@ try {
             }
         }
 
+        $statement = $database->prepare('UPDATE bookings SET total_cost = :totalCost WHERE id = :bookingId;');
+        $statement->bindParam(':totalCost', $totalCost);
+        $statement->bindParam(':bookingId', $bookingId);
+        $statement->execute();
+
         echo "Booking successfully saved! Your total is $totalCost.";
     } else {
         echo "Invalid request method.";
