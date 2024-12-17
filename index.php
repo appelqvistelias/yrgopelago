@@ -77,6 +77,15 @@ require_once __DIR__ . '/header.php';
 
                 <button type="submit">Submit</button>
             </form>
+            <div class="user-feedback">
+                <?php
+                if (isset($_POST['submit'])) {
+                    foreach ($_SESSION['messages'] as $message) { ?>
+                        <p><?= $message; ?></p>
+                <?php }
+                }
+                ?>
+            </div>
         </div> <!-- .inner-wrapper -->
     </section> <!-- #booking -->
 </main>
