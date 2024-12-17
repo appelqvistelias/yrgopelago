@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+use GuzzleHttp\Exception\ClientException;
+
+$S_SESSION['messages'] = []; // Store messages for user feedback
+
 try {
     $database = new PDO('sqlite:database/bookings.db');
     $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -47,35 +51,73 @@ try {
             }
         }
 
-        // Add booking to the bookings table
-        $statement = $database->prepare('INSERT INTO bookings (first_name, last_name, start_date, end_date, room_type_id, total_cost, transfer_code) VALUES (:firstName, :lastName, :startDate, :endDate, :roomTypeId, :totalCost, :transferCode)');
-        $statement->bindParam(':firstName', $firstName);
-        $statement->bindParam(':lastName', $lastName);
-        $statement->bindValue(':startDate', $startDate->format('Y-m-d'));
-        $statement->bindValue(':endDate', $endDate->format('Y-m-d'));
-        $statement->bindValue(':roomTypeId', $selectedRoom);
-        $statement->bindParam(':totalCost', $totalCost);
-        $statement->bindParam(':transferCode', $transferCode);
-        $statement->execute();
+        // Checking if transfercode is valid
+        if (isValidUuid($transferCode)) {
+            try {
+                $client = new GuzzleHttp\Client();
 
-        $bookingId = $database->lastInsertId(); // Current booking ID
+                // Checks if the transfercode and total cost match order
+                $res = $client->request('POST', 'https://yrgopelago.se/centralbank/transferCode', [
+                    'form_params' => [
+                        'transferCode' => $transferCode,
+                        'totalcost' => $totalCost
+                    ]
+                ]);
 
-        // Connecting features to booking ID
-        $bookedFeatures = [];
+                // Convert raw API response data from json to PHP array
+                $body = $res->getBody();
+                $stringBody = (string) $body;
+                $transferCodeResult = json_decode($stringBody, true);
 
-        foreach ($selectedFeatures as $feature) {
-            $bookedFeatures[] = ['booking_id' => $bookingId, 'feature' => $feature];
+                if (isset($transferCodeResult['status']) && $transferCodeResult['status'] === 'success') {
+                    // Send data to the deposit endpoint to recieve payment
+                    $res = $client->request('POST', 'https://yrgopelago.se/centralbank/deposit', [
+                        'form_params' => [
+                            'user' => 'elias',
+                            'transferCode' => $transferCode
+                        ]
+                    ]);
+
+                    // Add booking to the bookings table
+                    $statement = $database->prepare('INSERT INTO bookings (first_name, last_name, start_date, end_date, room_type_id, total_cost, transfer_code) VALUES (:firstName, :lastName, :startDate, :endDate, :roomTypeId, :totalCost, :transferCode)');
+                    $statement->bindParam(':firstName', $firstName);
+                    $statement->bindParam(':lastName', $lastName);
+                    $statement->bindValue(':startDate', $startDate->format('Y-m-d'));
+                    $statement->bindValue(':endDate', $endDate->format('Y-m-d'));
+                    $statement->bindValue(':roomTypeId', $selectedRoom);
+                    $statement->bindParam(':totalCost', $totalCost);
+                    $statement->bindParam(':transferCode', $transferCode);
+                    $statement->execute();
+
+                    $bookingId = $database->lastInsertId(); // Current booking ID
+
+                    // Connecting features to booking ID
+                    $bookedFeatures = [];
+
+                    foreach ($selectedFeatures as $feature) {
+                        $bookedFeatures[] = ['booking_id' => $bookingId, 'feature' => $feature];
+                    }
+
+                    $statement = $database->prepare('INSERT INTO booking_features (booking_id, feature_id) VALUES (:bookingId, :featureId);');
+
+                    foreach ($bookedFeatures as $booking) {
+                        $statement->bindParam(':bookingId', $booking['booking_id']);
+                        $statement->bindParam(':featureId', $booking['feature']);
+                        $statement->execute();
+                    }
+
+                    $_SESSION['messages'][] = "Your booking is successful! Your total is $totalCost.";
+                }
+            } catch (ClientException $e) {
+                $response = $e->getResponse();
+                $errorContent = $response->getBody()->getContents();
+
+                $errorMessage = json_decode($errorContent, true);
+                $_SESSION['messages'][] = $errorMessage['error'];
+            }
+        } else {
+            echo "Invalid transfer code format.";
         }
-
-        $statement = $database->prepare('INSERT INTO booking_features (booking_id, feature_id) VALUES (:bookingId, :featureId);');
-
-        foreach ($bookedFeatures as $booking) {
-            $statement->bindParam(':bookingId', $booking['booking_id']);
-            $statement->bindParam(':featureId', $booking['feature']);
-            $statement->execute();
-        }
-
-        echo "Booking successfully saved! Your total is $totalCost.";
     } else {
         echo "Invalid request method.";
     }
@@ -83,15 +125,4 @@ try {
     echo 'Database error: ' . $e->getMessage();
 } catch (Exception $e) {
     echo 'Error: ' . $e->getMessage();
-}
-
-// See if transferCode is valid
-function isValidUuid(string $uuid): bool
-{
-
-    if (!is_string($uuid) || (preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/', $uuid) !== 1)) {
-        return false;
-    }
-
-    return true;
 }
