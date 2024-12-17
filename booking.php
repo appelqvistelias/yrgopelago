@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// Insert booking into database
 try {
     $database = new PDO('sqlite:database/bookings.db');
     $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -15,6 +14,7 @@ try {
         $firstName = trim(htmlspecialchars($_POST['firstname']));
         $lastName = trim(htmlspecialchars($_POST['lastname']));
         $transferCode = trim(htmlspecialchars($_POST['transferCode']));
+        $bookingId = $database->lastInsertId(); // Current booking ID
 
         // Validate date range
         if ($startDate > $endDate || $startDate < new DateTime('2025-01-01') || $endDate > new DateTime('2025-01-31')) {
@@ -24,33 +24,6 @@ try {
         // Calculate total number of days
         $dateDifference = $startDate->diff($endDate);
         $totalDays = $dateDifference->days + 1;
-
-        // Add booking to the bookings table
-        $statement = $database->prepare('INSERT INTO bookings (first_name, last_name, start_date, end_date, room_type_id, transfer_code) VALUES (:firstName, :lastName, :startDate, :endDate, :roomTypeId, :transferCode)');
-        $statement->bindParam(':firstName', $firstName);
-        $statement->bindParam(':lastName', $lastName);
-        $statement->bindValue(':startDate', $startDate->format('Y-m-d'));
-        $statement->bindValue(':endDate', $endDate->format('Y-m-d'));
-        $statement->bindValue(':roomTypeId', $selectedRoom);
-        $statement->bindParam(':transferCode', $transferCode);
-        $statement->execute();
-
-        $bookingId = $database->lastInsertId();
-
-        // Connecting features to booking ID
-        $bookedFeatures = [];
-
-        foreach ($selectedFeatures as $feature) {
-            $bookedFeatures[] = ['booking_id' => $bookingId, 'feature' => $feature];
-        }
-
-        $statement = $database->prepare('INSERT INTO booking_features (booking_id, feature_id) VALUES (:bookingId, :featureId);');
-
-        foreach ($bookedFeatures as $booking) {
-            $statement->bindParam(':bookingId', $booking['booking_id']);
-            $statement->bindParam(':featureId', $booking['feature']);
-            $statement->execute();
-        }
 
         // Calculate total cost
         $totalCost = 0;
@@ -75,10 +48,31 @@ try {
             }
         }
 
-        $statement = $database->prepare('UPDATE bookings SET total_cost = :totalCost WHERE id = :bookingId;');
+        // Add booking to the bookings table
+        $statement = $database->prepare('INSERT INTO bookings (first_name, last_name, start_date, end_date, room_type_id, total_cost, transfer_code) VALUES (:firstName, :lastName, :startDate, :endDate, :roomTypeId, :totalCost, :transferCode)');
+        $statement->bindParam(':firstName', $firstName);
+        $statement->bindParam(':lastName', $lastName);
+        $statement->bindValue(':startDate', $startDate->format('Y-m-d'));
+        $statement->bindValue(':endDate', $endDate->format('Y-m-d'));
+        $statement->bindValue(':roomTypeId', $selectedRoom);
         $statement->bindParam(':totalCost', $totalCost);
-        $statement->bindParam(':bookingId', $bookingId);
+        $statement->bindParam(':transferCode', $transferCode);
         $statement->execute();
+
+        // Connecting features to booking ID
+        $bookedFeatures = [];
+
+        foreach ($selectedFeatures as $feature) {
+            $bookedFeatures[] = ['booking_id' => $bookingId, 'feature' => $feature];
+        }
+
+        $statement = $database->prepare('INSERT INTO booking_features (booking_id, feature_id) VALUES (:bookingId, :featureId);');
+
+        foreach ($bookedFeatures as $booking) {
+            $statement->bindParam(':bookingId', $booking['booking_id']);
+            $statement->bindParam(':featureId', $booking['feature']);
+            $statement->execute();
+        }
 
         echo "Booking successfully saved! Your total is $totalCost.";
     } else {
