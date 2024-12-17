@@ -21,7 +21,7 @@ try {
 
         // Validate date range
         if ($startDate > $endDate || $startDate < new DateTime('2025-01-01') || $endDate > new DateTime('2025-01-31')) {
-            throw new Exception("Invalid date range selected.");
+            $_SESSION['messages'][] = "Start date cannot be after the end date.";
         }
 
         // Calculate total number of days
@@ -116,13 +116,13 @@ try {
                 $_SESSION['messages'][] = $errorMessage['error'];
             }
         } else {
-            echo "Invalid transfer code format.";
+            $S_SESSION['messages'][] = "Invalid transfer code format.";
         }
     } else {
-        echo "Invalid request method.";
+        $S_SESSION['messages'][] = "Invalid request method.";
     }
 } catch (PDOException $e) {
-    echo 'Database error: ' . $e->getMessage();
+    $S_SESSION['messages'][] = 'Database error: ' . $e->getMessage();
 } catch (Exception $e) {
-    echo 'Error: ' . $e->getMessage();
+    $S_SESSION['messages'][] = 'Error: ' . $e->getMessage();
 }
