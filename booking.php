@@ -14,7 +14,6 @@ try {
         $firstName = trim(htmlspecialchars($_POST['firstname']));
         $lastName = trim(htmlspecialchars($_POST['lastname']));
         $transferCode = trim(htmlspecialchars($_POST['transferCode']));
-        $bookingId = $database->lastInsertId(); // Current booking ID
 
         // Validate date range
         if ($startDate > $endDate || $startDate < new DateTime('2025-01-01') || $endDate > new DateTime('2025-01-31')) {
@@ -58,6 +57,8 @@ try {
         $statement->bindParam(':totalCost', $totalCost);
         $statement->bindParam(':transferCode', $transferCode);
         $statement->execute();
+
+        $bookingId = $database->lastInsertId(); // Current booking ID
 
         // Connecting features to booking ID
         $bookedFeatures = [];
