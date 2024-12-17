@@ -36,13 +36,13 @@ require_once __DIR__ . '/header.php';
                     </select>
 
                     <div class="features-select">
-                        <input type="checkbox" id="bathtub" name="features-options[]" value="1">
+                        <input type="checkbox" id="bathtub" name="features-options[]" value="1" data-price="1">
                         <label for="bathtub">Bathtub</label>
 
-                        <input type="checkbox" id="pinball-game" name="features-options[]" value="2">
+                        <input type="checkbox" id="pinball-game" name="features-options[]" value="2" data-price="2">
                         <label for="pinball-game">Pinball Game</label>
 
-                        <input type="checkbox" id="sauna" name="features-options[]" value="3">
+                        <input type="checkbox" id="sauna" name="features-options[]" value="3" data-price="3">
                         <label for="sauna">Sauna</label>
                     </div> <!-- .features-select -->
                 </div> <!-- .room-selection -->

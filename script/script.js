@@ -8,7 +8,24 @@ const totalPriceElement = document.querySelector('.total-price');
 
 function calculatePrices() {
     const selectedRoomOption = roomDropdown.options[roomDropdown.selectedIndex];
-    const roomPrice = parseInt(selectedRoomOption.getAttribute('data-price')) || 0;
+    let roomPrice = parseInt(selectedRoomOption.getAttribute('data-price')) || 0;
+
+    // Calculate total number of days
+    const startDateInput = document.getElementById('startdate').value;
+    const endDateInput = document.getElementById('enddate').value;
+
+    if (!startDateInput || !endDateInput) {
+        alert("Please enter arrival and departure dates!");
+        roomDropdown.selectedIndex = 0;
+        checkboxes.forEach(checkbox => checkbox.checked = false);
+        return;
+    }
+
+    const startDate = new Date(startDateInput);
+    const endDate = new Date(endDateInput);
+
+    const timeDifference = endDate - startDate; // in milliseconds
+    const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24) + 1); // convert to days
 
     let featuresPrice = 0;
     checkboxes.forEach(checkbox => {
@@ -16,7 +33,8 @@ function calculatePrices() {
             featuresPrice += parseInt(checkbox.getAttribute('data-price')) || 0;
         }
     });
-
+    
+    roomPrice *= daysDifference;
     const totalPrice = roomPrice + featuresPrice;
 
     roomPriceElement.textContent = roomPrice;
@@ -26,24 +44,3 @@ function calculatePrices() {
 
 roomDropdown.addEventListener('change', calculatePrices);
 checkboxes.forEach(checkbox => checkbox.addEventListener('change', calculatePrices));
-
-calculatePrices();
-
-// // Transfer JSON
-
-// const form = document.querySelector('form');
-
-// form.addEventListener('submit', (event) => {
-//     event.preventDefault(); // Prevent the default form submission
-
-//     const formData = new FormData(form);
-//     fetch('https://yrgopelago.se/centralbank/transferCode', {
-//         method: 'POST',
-//         body: formData,
-//     })
-//     .then((response) => response.json())
-//     .then((data) => {
-//         console.log(data); // Log the response data to the console
-//     })
-//     .catch(console.error); // Handle any errors in the fetch process
-// });
