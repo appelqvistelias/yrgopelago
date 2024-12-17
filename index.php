@@ -79,7 +79,7 @@ require_once __DIR__ . '/header.php';
             </form>
             <div class="user-feedback">
                 <?php
-                if (isset($_POST['submit'])) {
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     foreach ($_SESSION['messages'] as $message) { ?>
                         <p><?= $message; ?></p>
                 <?php }
