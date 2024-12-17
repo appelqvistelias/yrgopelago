@@ -1,7 +1,6 @@
 <?php
-require_once(__DIR__ . '/header.php');
-
-require_once(__DIR__ . '/booking.php');
+require_once __DIR__ . "/init.php";
+require_once __DIR__ . '/header.php';
 ?>
 
 <main>
