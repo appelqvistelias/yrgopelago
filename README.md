@@ -31,6 +31,7 @@ last_name VARCHAR(255) NOT NULL,
 start_date DATE NOT NULL,
 end_date DATE NOT NULL,
 room_type_id INTEGER NOT NULL,
+total_cost INTEGER NOT NULL,
 transfer_code TEXT NOT NULL,
 
 FOREIGN KEY (room_type_id) REFERENCES room_types(id)
