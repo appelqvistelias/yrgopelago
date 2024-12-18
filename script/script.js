@@ -1,32 +1,30 @@
-// Check date availability
+// Check room-date availability
 fetch('calendar.php')
     .then(response => response.json())
     .then(bookedDates => {
-        const startInput = document.getElementById('startdate');
-        const endInput = document.getElementById('enddate');
+        const roomDropdown = document.getElementById('room');
 
-        // Mark occupied dates
-        startInput.addEventListener('input', () => blockDates(startInput, bookedDates));
-        endInput.addEventListener('input', () => blockDates(endInput, bookedDates));
+        document.getElementById('startdate').addEventListener('change', () => filterRoomOptions(bookedDates));
+        document.getElementById('enddate').addEventListener('change', () => filterRoomOptions(bookedDates));
 
-        // Add change event listener only once for each input field
-        [startInput, endInput].forEach(input => {
-            input.addEventListener('change', () => {
-                if (bookedDates.includes(input.value)) {
-                    alert('This date is already booked!');
-                    input.value = ''; // Clear input if date is booked
-                    input.min = '2025-01-01';
-                    input.max = '2025-01-31';
-                }
+        function filterRoomOptions(bookedDates) {
+            const startDate = document.getElementById('startdate').value;
+            const endDate = document.getElementById('enddate').value;
+
+            Array.from(roomDropdown.options).forEach(option => {
+                const roomTypeId = option.value;
+                const isBooked = bookedDates.some(dateObj => dateObj.date === startDate && dateObj.roomType == roomTypeId);
+
+                option.disabled = isBooked; // Disable room types that are booked
             });
-        });
+
+            // Reset to default if no options are available
+            if ([...roomDropdown.options].every(option => option.disabled)) {
+                roomDropdown.selectedIndex = 0;
+            }
+        }
     })
     .catch(error => console.error('Error fetching booked dates:', error));
-
-function blockDates(input, bookedDates) {
-    const today = new Date().toISOString().split('T')[0];
-    input.min = today; // Disable past dates
-}
 
 // Price calculation for user feedback
 const roomDropdown = document.querySelector('#room');
