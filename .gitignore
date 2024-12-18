@@ -2,4 +2,3 @@ vendor
 .env
 .DS_Store
 database
-guests
