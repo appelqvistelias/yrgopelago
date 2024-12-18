@@ -1,4 +1,32 @@
-// Price calculations
+// Check date availability
+fetch('calendar.php')
+    .then(response => response.json())
+    .then(bookedDates => {
+        const startInput = document.getElementById('startdate');
+        const endInput = document.getElementById('enddate');
+
+        // Mark occupied dates
+        startInput.addEventListener('input', () => blockDates(startInput, bookedDates));
+        endInput.addEventListener('input', () => blockDates(endInput, bookedDates));
+
+        // Add change event listener only once for each input field
+        [startInput, endInput].forEach(input => {
+            input.addEventListener('change', () => {
+                if (bookedDates.includes(input.value)) {
+                    alert('This date is already booked!');
+                    input.value = ''; // Clear input if date is booked
+                }
+            });
+        });
+    })
+    .catch(error => console.error('Error fetching booked dates:', error));
+
+function blockDates(input, bookedDates) {
+    const today = new Date().toISOString().split('T')[0];
+    input.min = today; // Disable past dates
+}
+
+// Price calculation for user feedback
 const roomDropdown = document.querySelector('#room');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
