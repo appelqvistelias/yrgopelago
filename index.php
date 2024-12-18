@@ -79,10 +79,11 @@ require_once __DIR__ . '/header.php';
             </form>
             <div class="user-feedback">
                 <?php
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_SESSION['messages'])) {
                     foreach ($_SESSION['messages'] as $message) { ?>
                         <p><?= $message; ?></p>
                 <?php }
+                    $_SESSION['messages'] = [];
                 }
                 ?>
             </div>

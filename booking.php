@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 use GuzzleHttp\Exception\ClientException;
 
-$S_SESSION['messages'] = []; // Store messages for user feedback
+if (!isset($_SESSION['messages'])) {
+    $_SESSION['messages'] = []; // Store messages for user feedback
+}
 
 try {
     $database = new PDO('sqlite:database/bookings.db');
