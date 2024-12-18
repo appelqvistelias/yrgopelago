@@ -61,17 +61,17 @@ require_once __DIR__ . '/header.php';
                 <div class="price">
                     <div>
                         <p>Room: </p>
-                        <p class="room-price">0</p>
+                        <p class="room-price">$0</p>
                     </div>
 
                     <div>
                         <p>Features: </p>
-                        <p class="features-price">0</p>
+                        <p class="features-price">$0</p>
                     </div>
 
                     <div>
                         <p>Total: </p>
-                        <p class="total-price">0</p>
+                        <p class="total-price">$0</p>
                     </div>
                 </div> <!-- .price -->
 

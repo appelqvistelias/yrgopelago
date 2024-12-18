@@ -65,9 +65,9 @@ function calculatePrices() {
     roomPrice *= daysDifference;
     const totalPrice = roomPrice + featuresPrice;
 
-    roomPriceElement.textContent = roomPrice;
-    featuresPriceElement.textContent = featuresPrice;
-    totalPriceElement.textContent = totalPrice;
+    roomPriceElement.textContent = '$' + roomPrice;
+    featuresPriceElement.textContent = '$' + featuresPrice;
+    totalPriceElement.textContent = '$' + totalPrice;
 }
 
 roomDropdown.addEventListener('change', calculatePrices);
