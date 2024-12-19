@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 use GuzzleHttp\Exception\ClientException;
 
-if (!isset($_SESSION['messages'])) {
-    $_SESSION['messages'] = []; // Store messages for user feedback
-}
-
 try {
     $database = new PDO('sqlite:database/bookings.db');
     $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -23,7 +19,11 @@ try {
 
         // Validate date range
         if ($startDate > $endDate || $startDate < new DateTime('2025-01-01') || $endDate > new DateTime('2025-01-31')) {
-            $_SESSION['messages'][] = "Start date cannot be after the end date.";
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Start date cannot be after the end date or out of range.'
+            ]);
+            exit;
         }
 
         // Calculate total number of days
@@ -108,23 +108,57 @@ try {
                         $statement->execute();
                     }
 
-                    $_SESSION['messages'][] = "Your booking is successful! Your total is $totalCost.";
+                    echo json_encode([
+                        'status' => 'success',
+                        'data' => [
+                            'island' => 'Main Frame Island',
+                            'hotel' => 'Back-End Hotel',
+                            'arrival_date' => $startDate->format('Y-m-d'),
+                            'departure_date' => $endDate->format('Y-m-d'),
+                            'total_cost' => $totalCost,
+                            'stars' => 3,
+                            'features' => $bookedFeatures,
+                            'additional_info' => [
+                                'greetings' => 'Thank you for choosing Back-End Hotel!'
+                            ]
+                        ]
+                    ]);
+                    exit;
                 }
             } catch (ClientException $e) {
                 $response = $e->getResponse();
                 $errorContent = $response->getBody()->getContents();
-
                 $errorMessage = json_decode($errorContent, true);
-                $_SESSION['messages'][] = $errorMessage['error'];
+                echo json_encode([
+                    'status' => 'error',
+                    'message' => $errorMessage['error']
+                ]);
+                exit;
             }
         } else {
-            $S_SESSION['messages'][] = "Invalid transfer code format.";
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Invalid transfer code format.'
+            ]);
+            exit;
         }
     } else {
-        $S_SESSION['messages'][] = "Invalid request method.";
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Invalid request method.'
+        ]);
+        exit;
     }
 } catch (PDOException $e) {
-    $S_SESSION['messages'][] = 'Database error: ' . $e->getMessage();
+    echo json_encode([
+        'status' => 'error',
+        'message' => 'Database error: ' . $e->getMessage()
+    ]);
+    exit;
 } catch (Exception $e) {
-    $S_SESSION['messages'][] = 'Error: ' . $e->getMessage();
+    echo json_encode([
+        'status' => 'error',
+        'message' => 'Error: ' . $e->getMessage()
+    ]);
+    exit;
 }
