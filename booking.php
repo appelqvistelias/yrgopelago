@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+header('Content-Type: application/json');
+
 use GuzzleHttp\Exception\ClientException;
 
 try {
