@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style/typography.css">
     <link rel="stylesheet" href="style/style.css">
 
-    <title>Yrgopelago</title>
+    <title>Back-End Hotel</title>
 </head>
 
 <body>
