@@ -73,37 +73,73 @@ function calculatePrices() {
 roomDropdown.addEventListener('change', calculatePrices);
 checkboxes.forEach(checkbox => checkbox.addEventListener('change', calculatePrices));
 
+
 // Fetch bookings data and/or errors for user feedback
-async function fetchFeedback() {
-    try {
-        const response = await fetch ('../booking.php', {
-            method: 'POST',
-            body: new FormData(),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("booking-form");
+    const feedbackDiv = document.querySelector(".user-feedback");
 
-        const result = await response.json();
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
 
-        if (result.status === 'success') {
-            const feedbackContainer = document.querySelector('.user-feedback');
-            result.data.forEach(msg => {
-                const p = document.createElement('p');
-                p.classList.add('success-message');
-                p.textContent = msg.message;
-                feedbackContainer.appendChild(p);
-            });
-        } else if (result.status === 'error') {
-            const feedbackContainer = document.querySelector('.user-feedback');
-            const p = document.createElement('p');
-            p.classList.add('error-message');
-            p.textContent = result.message;
-            feedbackContainer.appendChild(p);
+        // Clear old feedback
+        while (feedbackDiv.firstChild) {
+            feedbackDiv.removeChild(feedbackDiv.firstChild);
         }
-    } catch (error) {
-        console.error('Error fetching feedback:', error);
-    }
-}
 
-fetchFeedback();
+        // Collect data from form
+        const formData = new FormData(form);
+
+        try {
+            // Sending POST request
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData,
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                // Booking successful
+                const successMessage = document.createElement("p");
+                successMessage.classList.add('success-message');
+                successMessage.textContent = "Booking successful!";
+                feedbackDiv.appendChild(successMessage);
+
+                const detailsList = document.createElement("ul");
+
+                // Add details from response
+                for (const [key, value] of Object.entries(result.data)) {
+                    const listItem = document.createElement("li");
+
+                    if (typeof value === "object" && !Array.isArray(value)) {
+                        listItem.textContent = `${key}:`;
+                        const nestedList = document.createElement("ul");
+                        for (const [nestedKey, nestedValue] of Object.entries(value)) {
+                            const nestedItem = document.createElement("li");
+                            nestedItem.textContent = `${nestedKey}: ${nestedValue}`;
+                            nestedList.appendChild(nestedItem);
+                        }
+                        listItem.appendChild(nestedList);
+                    } else {
+                        listItem.textContent = `${key}: ${value}`;
+                    }
+
+                    detailsList.appendChild(listItem);
+                }
+
+                feedbackDiv.appendChild(detailsList);
+            } else {
+                const errorMessage = document.createElement("p");
+                errorMessage.classList.add('error-message');
+                errorMessage.textContent = `Error: ${result.message}`;
+                feedbackDiv.appendChild(errorMessage);
+            }
+        } catch (error) {
+            const errorMessage = document.createElement("p");
+            errorMessage.classList.add('error-message');
+            errorMessage.textContent = `Something went wrong: ${error.message}`;
+            feedbackDiv.appendChild(errorMessage);
+        }
+    });
+});
