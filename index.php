@@ -23,7 +23,7 @@ require_once __DIR__ . '/header.php';
 
     <section id="booking">
         <div class="inner-wrapper">
-            <form method="post" action="index.php">
+            <form id="booking-form" method="post" action="index.php">
                 <div class="arrival-departure">
                     <label for="startdate">Arrival:</label>
                     <input type="date" id="startdate" name="startdate" min="2025-01-01" max="2025-01-31" required>
