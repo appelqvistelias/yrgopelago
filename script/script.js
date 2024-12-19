@@ -72,3 +72,38 @@ function calculatePrices() {
 
 roomDropdown.addEventListener('change', calculatePrices);
 checkboxes.forEach(checkbox => checkbox.addEventListener('change', calculatePrices));
+
+// Fetch bookings data and/or errors for user feedback
+async function fetchFeedback() {
+    try {
+        const response = await fetch ('../booking.php', {
+            method: 'POST',
+            body: new FormData(),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const result = await response.json();
+
+        if (result.status === 'success') {
+            const feedbackContainer = document.querySelector('.user-feedback');
+            result.data.forEach(msg => {
+                const p = document.createElement('p');
+                p.classList.add('success-message');
+                p.textContent = msg.message;
+                feedbackContainer.appendChild(p);
+            });
+        } else if (result.status === 'error') {
+            const feedbackContainer = document.querySelector('.user-feedback');
+            const p = document.createElement('p');
+            p.classList.add('error-message');
+            p.textContent = result.message;
+            feedbackContainer.appendChild(p);
+        }
+    } catch (error) {
+        console.error('Error fetching feedback:', error);
+    }
+}
+
+fetchFeedback();

@@ -12,7 +12,7 @@ require_once __DIR__ . '/header.php';
 <main>
     <section id="hero">
         <div class="inner-wrapper">
-            <h1>Welcome to the wonderful Backend Hotel on Main Frame Island</h1>
+            <h1>Welcome to the wonderful Back-End Hotel on Main Frame Island</h1>
         </div> <!-- .inner-wrapper -->
     </section> <!-- #hero -->
 
@@ -84,15 +84,7 @@ require_once __DIR__ . '/header.php';
                 <button type="submit">Submit</button>
             </form>
             <div class="user-feedback">
-                <?php
-                if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_SESSION['messages'])) {
-                    foreach ($_SESSION['messages'] as $message) { ?>
-                        <p><?= $message; ?></p>
-                <?php }
-                    $_SESSION['messages'] = [];
-                }
-                ?>
-            </div>
+            </div> <!-- .user-feedback -->
         </div> <!-- .inner-wrapper -->
     </section> <!-- #booking -->
 </main>
