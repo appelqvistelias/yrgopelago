@@ -19,6 +19,7 @@ try {
 
         // Validate date range
         if ($startDate > $endDate || $startDate < new DateTime('2025-01-01') || $endDate > new DateTime('2025-01-31')) {
+            http_response_code(400); // Bad Request
             echo json_encode([
                 'status' => 'error',
                 'message' => 'Start date cannot be after the end date or out of range.'
@@ -108,6 +109,7 @@ try {
                         $statement->execute();
                     }
 
+                    http_response_code(200); // OK
                     echo json_encode([
                         'status' => 'success',
                         'data' => [
@@ -129,6 +131,7 @@ try {
                 $response = $e->getResponse();
                 $errorContent = $response->getBody()->getContents();
                 $errorMessage = json_decode($errorContent, true);
+                http_response_code(400); // Bad Request
                 echo json_encode([
                     'status' => 'error',
                     'message' => $errorMessage['error']
@@ -136,6 +139,7 @@ try {
                 exit;
             }
         } else {
+            http_response_code(400); // Bad Request
             echo json_encode([
                 'status' => 'error',
                 'message' => 'Invalid transfer code format.'
@@ -143,6 +147,7 @@ try {
             exit;
         }
     } else {
+        http_response_code(400); // Bad Request
         echo json_encode([
             'status' => 'error',
             'message' => 'Invalid request method.'
@@ -150,12 +155,14 @@ try {
         exit;
     }
 } catch (PDOException $e) {
+    http_response_code(500); // Internal Server Error
     echo json_encode([
         'status' => 'error',
         'message' => 'Database error: ' . $e->getMessage()
     ]);
     exit;
 } catch (Exception $e) {
+    http_response_code(500); // Internal Server Error
     echo json_encode([
         'status' => 'error',
         'message' => 'Error: ' . $e->getMessage()
