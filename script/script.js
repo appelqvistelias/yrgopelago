@@ -106,29 +106,42 @@ document.addEventListener("DOMContentLoaded", () => {
                 successMessage.textContent = "Booking successful!";
                 feedbackDiv.appendChild(successMessage);
 
-                const detailsList = document.createElement("ul");
+                const islandName = document.createElement("p");
+                islandName.textContent = "Island Name: " + result.data['island'];
+                feedbackDiv.appendChild(islandName);
 
-                // Add details from response
-                for (const [key, value] of Object.entries(result.data)) {
-                    const listItem = document.createElement("li");
+                const hotelName = document.createElement("p");
+                hotelName.textContent = "Hotel Name: " + result.data['hotel'];
+                feedbackDiv.appendChild(hotelName);
 
-                    if (typeof value === "object" && !Array.isArray(value)) {
-                        listItem.textContent = `${key}:`;
-                        const nestedList = document.createElement("ul");
-                        for (const [nestedKey, nestedValue] of Object.entries(value)) {
-                            const nestedItem = document.createElement("li");
-                            nestedItem.textContent = `${nestedKey}: ${nestedValue}`;
-                            nestedList.appendChild(nestedItem);
-                        }
-                        listItem.appendChild(nestedList);
-                    } else {
-                        listItem.textContent = `${key}: ${value}`;
-                    }
+                const arrivalDate = document.createElement("p");
+                arrivalDate.textContent = "Arrival: " + result.data['arrival_date'];
+                feedbackDiv.appendChild(arrivalDate);
 
-                    detailsList.appendChild(listItem);
-                }
+                const departureDate = document.createElement("p");
+                departureDate.textContent = "Departure: " + result.data['departure_date'];
+                feedbackDiv.appendChild(departureDate);
 
-                feedbackDiv.appendChild(detailsList);
+                const totalCost = document.createElement("p");
+                totalCost.textContent = "Total Cost: $" + result.data['total_cost'];
+                feedbackDiv.appendChild(totalCost);
+                
+                const stars = document.createElement("p");
+                stars.textContent = "Stars: " + result.data['stars'];
+                feedbackDiv.appendChild(stars);
+
+                const roomType = document.createElement("p");
+                roomType.textContent = "Room type: " + result.data['room_type'];
+                feedbackDiv.appendChild(roomType);
+
+                const features = document.createElement("p");
+                features.textContent = "Features: " + result.data['features'].join(', ');
+                feedbackDiv.appendChild(features);
+
+                const additionalInfo = document.createElement("p");
+                additionalInfo.textContent = result.data['additional_info']['greetings'];
+                feedbackDiv.appendChild(additionalInfo);
+
             } else {
                 const errorMessage = document.createElement("p");
                 errorMessage.classList.add('error-message');
