@@ -90,7 +90,7 @@ try {
                 $transferCodeResult = json_decode($stringBody, true);
 
                 if (isset($transferCodeResult['status']) && $transferCodeResult['status'] === 'success') {
-                    // Send data to the deposit endpoint to recieve payment
+                    // Send data to the deposit endpoint to receive payment
                     $res = $client->request('POST', 'https://yrgopelago.se/centralbank/deposit', [
                         'form_params' => [
                             'user' => 'elias',
