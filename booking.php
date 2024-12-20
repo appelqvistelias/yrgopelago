@@ -56,6 +56,21 @@ try {
             }
         }
 
+        // Naming rooms for json-response
+        $roomTypes = [1 => 'Economy', 2 => 'Standard', 3 => 'Luxury'];
+        $roomType = $roomTypes[$selectedRoom] ?? 'Unknown Room';
+
+        // Naming features for json-response
+        $featuresNames = [
+            1 => 'Bathtub',
+            2 => 'Pinball Game',
+            3 => 'Sauna'
+        ];
+
+        $selectedFeaturesNames = array_map(function ($featureId) use ($featuresNames) {
+            return $featuresNames[$featureId] ?? 'Unknown feature';
+        }, $selectedFeatures);
+
         // Checking if transfercode is valid
         if (isValidUuid($transferCode)) {
             try {
@@ -121,7 +136,8 @@ try {
                             'departure_date' => $endDate->format('Y-m-d'),
                             'total_cost' => $totalCost,
                             'stars' => 3,
-                            'features' => $bookedFeatures,
+                            'room_type' => $roomType,
+                            'features' => $selectedFeaturesNames,
                             'additional_info' => [
                                 'greetings' => 'Thank you for choosing Back-End Hotel!'
                             ]
