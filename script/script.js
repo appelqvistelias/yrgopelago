@@ -26,7 +26,7 @@ fetch('calendar.php')
     })
     .catch(error => console.error('Error fetching booked dates:', error));
 
-// Price calculation for user feedback
+// Price calculation for instant user feedback
 const roomDropdown = document.querySelector('#room');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
@@ -74,7 +74,7 @@ roomDropdown.addEventListener('change', calculatePrices);
 checkboxes.forEach(checkbox => checkbox.addEventListener('change', calculatePrices));
 
 
-// Fetch bookings data and/or errors for user feedback
+// User feedback after trying to book
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("booking-form");
     const feedbackDiv = document.querySelector(".user-feedback");
