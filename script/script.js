@@ -1,3 +1,57 @@
+// Visual calendar function
+function createCalendar(bookedDates) {
+    const calendarGrid = document.querySelector('.calendar-grid');
+    const year = 2025;
+    const month = 0;
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const startingDay = firstDay === 0 ? 6 : firstDay - 1;
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    // empty cells before first date
+    for (let i = 0; i < startingDay; i++) {
+        const emptyDay = document.createElement('div');
+        emptyDay.className = 'calendar-day';
+        calendarGrid.appendChild(emptyDay);
+    }
+
+    // Create cells for days
+    for (let day = 1; day <= daysInMonth; day++) {
+        const dayCell = document.createElement('div');
+        dayCell.className = 'calendar-day';
+
+        // Add the date number
+        const dateNumber = document.createElement('div');
+        dateNumber.textContent = day;
+        dayCell.appendChild(dateNumber);
+
+        // Format date to match data format
+        const currentDate = `2025-01-${day.toString().padStart(2, '0')}`;
+
+        // Status for each room type
+        const roomTypes = [
+            {id: '1', name: 'Economy'},
+            {id: '2', name: 'Standard'},
+            {id: '3', name: 'Luxury'}
+        ];
+
+        roomTypes.forEach(room => {
+            const roomStatus = document.createElement('div');
+
+            const isBooked = bookedDates.some(dateObj => 
+                dateObj.date === currentDate &&
+                dateObj.roomType === room.id
+            );
+
+            roomStatus.classList.add(isBooked ? 'booked' : 'available');
+            roomStatus.textContent = room.name;
+            dayCell.appendChild(roomStatus);
+        });
+
+        calendarGrid.appendChild(dayCell);
+    }
+}
+
 // Check room-date availability
 fetch('calendar.php')
     .then(response => response.json())
@@ -34,6 +88,9 @@ fetch('calendar.php')
                 roomDropdown.selectedIndex = 0;
             }
         }
+
+        createCalendar(bookedDates);
+
     })
     .catch(error => console.error('Error fetching booked dates:', error));
 
