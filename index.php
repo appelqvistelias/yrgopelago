@@ -32,8 +32,8 @@ require_once __DIR__ . '/header.php';
                 <div class="weekday">Fri</div>
                 <div class="weekday">Sat</div>
                 <div class="weekday">Sun</div>
-            </div>
-        </div>
+            </div> <!-- .calendar-grid -->
+        </div> <!-- .calendar-container -->
 
         <div class="inner-wrapper">
             <form id="booking-form" method="post" action="index.php">
