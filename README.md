@@ -39,7 +39,6 @@ FOREIGN KEY (room_type_id) REFERENCES room_types(id)
 
 
 CREATE TABLE IF NOT EXISTS booking_features (
-id INTEGER PRIMARY KEY AUTOINCREMENT,
 booking_id INTEGER NOT NULL,
 feature_id INTEGER NOT NULL,
 PRIMARY KEY (booking_id, feature_id),
