@@ -5,3 +5,18 @@
 .error-message {
     color: firebrick;
 }
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    max-width: 100rem;
+}
+
+.available {
+    color: #006400;
+}
+
+.booked {
+    color: #8B0000;
+}

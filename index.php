@@ -22,6 +22,19 @@ require_once __DIR__ . '/header.php';
     </section> <!-- #info -->
 
     <section id="booking">
+        <div class="calendar-container">
+            <h3>January 2025</h3>
+            <div class="calendar-grid">
+                <div class="weekday">Mon</div>
+                <div class="weekday">Tue</div>
+                <div class="weekday">Wed</div>
+                <div class="weekday">Thu</div>
+                <div class="weekday">Fri</div>
+                <div class="weekday">Sat</div>
+                <div class="weekday">Sun</div>
+            </div>
+        </div>
+
         <div class="inner-wrapper">
             <form id="booking-form" method="post" action="index.php">
                 <div class="arrival-departure">
