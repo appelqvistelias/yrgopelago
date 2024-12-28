@@ -13,6 +13,10 @@
     max-width: 100rem;
 }
 
+.calendar-day {
+    padding: 1rem;
+}
+
 .available {
     color: #006400;
 }
