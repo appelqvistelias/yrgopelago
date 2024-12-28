@@ -3,23 +3,34 @@ fetch('calendar.php')
     .then(response => response.json())
     .then(bookedDates => {
         const roomDropdown = document.getElementById('room');
+        const startDateInput = document.getElementById('startdate');
+        const endDateInput = document.getElementById('enddate');
 
-        document.getElementById('startdate').addEventListener('change', () => filterRoomOptions(bookedDates));
-        document.getElementById('enddate').addEventListener('change', () => filterRoomOptions(bookedDates));
+        startDateInput.addEventListener('change', () => filterRoomOptions(bookedDates));
+        endDateInput.addEventListener('change', () => filterRoomOptions(bookedDates));
 
         function filterRoomOptions(bookedDates) {
-            const startDate = document.getElementById('startdate').value;
-            const endDate = document.getElementById('enddate').value;
+            const startDate = new Date(startDateInput.value);
+            const endDate = new Date(endDateInput.value);
+
+            if (!startDateInput.value || !endDateInput.value) return;
 
             Array.from(roomDropdown.options).forEach(option => {
+                if (option.value === "") return; // Skip placeholder option
+                
                 const roomTypeId = option.value;
-                const isBooked = bookedDates.some(dateObj => dateObj.date === startDate && dateObj.roomType == roomTypeId);
+                const isBooked = bookedDates.some(dateObj => {
+                    const bookedDate = new Date(dateObj.date);
+                    return dateObj.roomType == roomTypeId && 
+                           bookedDate >= startDate && 
+                           bookedDate <= endDate;
+                });
 
                 option.disabled = isBooked; // Disable room types that are booked
             });
 
             // Reset to default if no options are available
-            if ([...roomDropdown.options].every(option => option.disabled)) {
+            if ([...roomDropdown.options].slice(1).every(option => option.disabled)) {
                 roomDropdown.selectedIndex = 0;
             }
         }
