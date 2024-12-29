@@ -152,7 +152,6 @@ function calculatePrices() {
 roomDropdown.addEventListener('change', calculatePrices);
 checkboxes.forEach(checkbox => checkbox.addEventListener('change', calculatePrices));
 
-
 // User feedback after trying to book
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("booking-form");
