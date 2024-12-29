@@ -39,6 +39,7 @@ function createCalendar(bookedDates) {
         roomTypes.forEach(room => {
             const roomStatus = document.createElement('div');
 
+            // Check if the room is booked on the current date, return true if it is
             const isBooked = bookedDates.some(dateObj => 
                 dateObj.date === currentDate &&
                 dateObj.roomType === room.id
@@ -55,7 +56,12 @@ function createCalendar(bookedDates) {
 
 // Check room-date availability
 fetch('calendar.php')
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch booked dates');
+        }
+        return response.json();
+    })
     .then(bookedDates => {
         const roomDropdown = document.getElementById('room');
         const startDateInput = document.getElementById('startdate');
