@@ -54,6 +54,37 @@ function createCalendar(bookedDates) {
     }
 }
 
+// Function to filter room options based on booked dates
+function filterRoomOptions(bookedDates) {
+    const roomDropdown = document.getElementById('room');
+    const startDateInput = document.getElementById('startdate');
+    const endDateInput = document.getElementById('enddate');
+    
+    const startDate = new Date(startDateInput.value);
+    const endDate = new Date(endDateInput.value);
+
+    if (!startDateInput.value || !endDateInput.value) return;
+
+    Array.from(roomDropdown.options).forEach(option => {
+        if (option.value === "") return; // Skip placeholder option
+        
+        const roomTypeId = option.value;
+        const isBooked = bookedDates.some(dateObj => {
+            const bookedDate = new Date(dateObj.date);
+            return dateObj.roomType == roomTypeId && 
+                   bookedDate >= startDate && 
+                   bookedDate <= endDate;
+        });
+
+        option.disabled = isBooked; // Disable room types that are booked
+    });
+
+    // Reset to default if no options are available
+    if ([...roomDropdown.options].slice(1).every(option => option.disabled)) {
+        roomDropdown.selectedIndex = 0;
+    }
+}
+
 // Check room-date availability
 fetch('calendar.php')
     .then(response => {
@@ -66,38 +97,11 @@ fetch('calendar.php')
         const roomDropdown = document.getElementById('room');
         const startDateInput = document.getElementById('startdate');
         const endDateInput = document.getElementById('enddate');
-
+        
         startDateInput.addEventListener('change', () => filterRoomOptions(bookedDates));
         endDateInput.addEventListener('change', () => filterRoomOptions(bookedDates));
 
-        function filterRoomOptions(bookedDates) {
-            const startDate = new Date(startDateInput.value);
-            const endDate = new Date(endDateInput.value);
-
-            if (!startDateInput.value || !endDateInput.value) return;
-
-            Array.from(roomDropdown.options).forEach(option => {
-                if (option.value === "") return; // Skip placeholder option
-                
-                const roomTypeId = option.value;
-                const isBooked = bookedDates.some(dateObj => {
-                    const bookedDate = new Date(dateObj.date);
-                    return dateObj.roomType == roomTypeId && 
-                           bookedDate >= startDate && 
-                           bookedDate <= endDate;
-                });
-
-                option.disabled = isBooked; // Disable room types that are booked
-            });
-
-            // Reset to default if no options are available
-            if ([...roomDropdown.options].slice(1).every(option => option.disabled)) {
-                roomDropdown.selectedIndex = 0;
-            }
-        }
-
         createCalendar(bookedDates);
-
     })
     .catch(error => console.error('Error fetching booked dates:', error));
 
