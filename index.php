@@ -11,6 +11,7 @@ require_once __DIR__ . '/header.php';
 
 <main>
     <section id="hero">
+        <canvas id="matrix-drops"></canvas>
         <div class="inner-wrapper">
             <h1>Welcome to the wonderful Back-End Hotel on Main Frame Island</h1>
         </div> <!-- .inner-wrapper -->
