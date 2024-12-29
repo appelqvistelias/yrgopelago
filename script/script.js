@@ -1,6 +1,7 @@
 // Visual calendar function
 function createCalendar(bookedDates) {
     const calendarGrid = document.querySelector('.calendar-grid');
+    // Hard coded due to assignment
     const year = 2025;
     const month = 0;
 
@@ -30,9 +31,9 @@ function createCalendar(bookedDates) {
 
         // Status for each room type
         const roomTypes = [
-            {id: '1', name: 'Economy'},
-            {id: '2', name: 'Standard'},
-            {id: '3', name: 'Luxury'}
+            {id: 1, name: 'Economy'},
+            {id: 2, name: 'Standard'},
+            {id: 3, name: 'Luxury'}
         ];
 
         roomTypes.forEach(room => {
