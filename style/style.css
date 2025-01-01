@@ -1,3 +1,4 @@
+/* #hero section */
 #matrix-drops {
     position: absolute;
     top: 0;
@@ -20,14 +21,17 @@ h1 {
     color: var(--retro-white);
 }
 
-.success-message {
-    color: forestgreen;
+/* #info section */
+.rooms-container {
+    display: flex;
 }
 
-.error-message {
-    color: firebrick;
+img {
+    width: 50%;
+    height: auto;
 }
 
+/* #booking section */
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -45,6 +49,14 @@ h1 {
 
 .booked {
     color: #8B0000;
+}
+
+.success-message {
+    color: forestgreen;
+}
+
+.error-message {
+    color: firebrick;
 }
 
 /* Retro buttons */
