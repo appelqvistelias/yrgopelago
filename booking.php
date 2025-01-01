@@ -56,6 +56,11 @@ try {
             }
         }
 
+        // Calculating price reduction
+        if ($totalDays < 5) {
+            $totalCost *= 0.7;
+        }
+
         // Naming rooms for json-response
         $roomTypes = [1 => 'Economy', 2 => 'Standard', 3 => 'Luxury'];
         $roomType = $roomTypes[$selectedRoom] ?? 'Unknown Room';
