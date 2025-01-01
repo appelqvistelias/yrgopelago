@@ -9,6 +9,9 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
+ctx.fillStyle = '#000000';
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
 // Matrix characters
 const chars = "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃ1234567890";
 const charSize = 14;
@@ -22,7 +25,7 @@ for (let i = 0; i < columns; i++) {
 
 function draw() {
     // Semi transparent black background for fading effect
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillStyle = 'rgba(22, 22, 22, 0.028)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Green text
