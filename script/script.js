@@ -106,12 +106,30 @@ fetch('calendar.php')
     .catch(error => console.error('Error fetching booked dates:', error));
 
 // Price calculation for instant user feedback
+const departureDateInput = document.getElementById('enddate');
 const roomDropdown = document.querySelector('#room');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
 const roomPriceElement = document.querySelector('.room-price');
 const featuresPriceElement = document.querySelector('.features-price');
 const totalPriceElement = document.querySelector('.total-price');
+
+function validateDateOrder() {
+    const startDateInput = document.getElementById('startdate').value;
+    const endDateInput = document.getElementById('enddate').value;
+
+    const startDate = new Date(startDateInput);
+    const endDate = new Date(endDateInput);
+
+    if (startDate > endDate) {
+        alert("Departure date must be after arrival date");
+        endDateInput.value = '';
+        roomDropdown.selectedIndex = 0;
+        checkboxes.forEach(checkbox => checkbox.checked = false);
+        return false;
+    }
+    return true;
+}
 
 function calculatePrices() {
     const selectedRoomOption = roomDropdown.options[roomDropdown.selectedIndex];
@@ -122,7 +140,7 @@ function calculatePrices() {
     const endDateInput = document.getElementById('enddate').value;
 
     if (!startDateInput || !endDateInput) {
-        alert("Please enter arrival and departure dates!");
+        alert("Please enter arrival and departure dates");
         roomDropdown.selectedIndex = 0;
         checkboxes.forEach(checkbox => checkbox.checked = false);
         return;
@@ -142,14 +160,21 @@ function calculatePrices() {
     });
     
     roomPrice *= daysDifference;
-    const totalPrice = roomPrice + featuresPrice;
+    let totalPrice = roomPrice + featuresPrice;
+
+    if (daysDifference > 5) {
+        totalPrice *= 0.7;
+    }
 
     roomPriceElement.textContent = '$' + roomPrice;
     featuresPriceElement.textContent = '$' + featuresPrice;
     totalPriceElement.textContent = '$' + totalPrice;
 }
 
+departureDateInput.addEventListener('change', validateDateOrder);
+roomDropdown.addEventListener('change', validateDateOrder);
 roomDropdown.addEventListener('change', calculatePrices);
+checkboxes.forEach(checkbox => checkbox.addEventListener('change', validateDateOrder));
 checkboxes.forEach(checkbox => checkbox.addEventListener('change', calculatePrices));
 
 // User feedback after trying to book
