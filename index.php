@@ -19,6 +19,11 @@ require_once __DIR__ . '/header.php';
 
     <section id="info">
         <div class="inner-wrapper">
+            <h2>Our rooms</h2>
+            <div class="rooms-container">
+                <img src="images/economy.png" alt="economy room">
+                <img src="images/standard.png" alt="standard room">
+            </div> <!-- .rooms-container -->
         </div> <!-- .inner-wrapper -->
     </section> <!-- #info -->
 
