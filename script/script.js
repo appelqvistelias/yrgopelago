@@ -104,7 +104,7 @@ fetch('calendar.php')
     })
     .catch(error => console.error('Error fetching booked dates:', error));
 
-// Price calculation for instant user feedback
+// User feedback while filling form
 const arrivalDateInput = document.getElementById('startdate');
 const departureDateInput = document.getElementById('enddate');
 const roomDropdown = document.querySelector('#room');
@@ -114,6 +114,7 @@ const roomPriceElement = document.querySelector('.room-price');
 const featuresPriceElement = document.querySelector('.features-price');
 const totalPriceElement = document.querySelector('.total-price');
 
+// Validation
 function validateDateOrder() {
     const startDateInput = document.getElementById('startdate');
     const endDateInput = document.getElementById('enddate');
@@ -123,23 +124,19 @@ function validateDateOrder() {
 
     if (startDate > endDate) {
         alert("Departure date must be after arrival date");
+        startDateInput.value = '';
         endDateInput.value = '';
         roomDropdown.selectedIndex = 0;
         checkboxes.forEach(checkbox => checkbox.checked = false);
+        roomPriceElement.textContent = '$0';
+        featuresPriceElement.textContent = '$0';
+        totalPriceElement.textContent = '$0';
         return false;
     }
     return true;
 }
 
-function calculatePrices() {
-    if (!validateDateOrder()) {
-        return;
-    }
-    
-    const selectedRoomOption = roomDropdown.options[roomDropdown.selectedIndex];
-    let roomPrice = parseInt(selectedRoomOption.getAttribute('data-price')) || 0;
-
-    // Calculate total number of days
+function validateFormSubmittingOrder() {
     const startDateInput = document.getElementById('startdate').value;
     const endDateInput = document.getElementById('enddate').value;
 
@@ -147,8 +144,22 @@ function calculatePrices() {
         alert("Please enter arrival and departure dates");
         roomDropdown.selectedIndex = 0;
         checkboxes.forEach(checkbox => checkbox.checked = false);
-        return;
+        roomPriceElement.textContent = '$0';
+        featuresPriceElement.textContent = '$0';
+        totalPriceElement.textContent = '$0';
+        return false;
     }
+    return true;
+}
+
+// Price calculation
+function calculatePrices() {
+    const selectedRoomOption = roomDropdown.options[roomDropdown.selectedIndex];
+    let roomPrice = parseInt(selectedRoomOption.getAttribute('data-price')) || 0;
+
+    // Calculate total number of days
+    const startDateInput = document.getElementById('startdate').value;
+    const endDateInput = document.getElementById('enddate').value;
 
     const startDate = new Date(startDateInput);
     const endDate = new Date(endDateInput);
@@ -170,6 +181,7 @@ function calculatePrices() {
     featuresPriceElement.textContent = '$' + featuresPrice;
     totalPriceElement.textContent = '$' + totalPrice;
 }
+
 arrivalDateInput.addEventListener('change', () => {
     if (validateDateOrder()) {
         calculatePrices();
@@ -182,8 +194,17 @@ departureDateInput.addEventListener('change', () => {
     }
 });
 
-roomDropdown.addEventListener('change', calculatePrices);
-checkboxes.forEach(checkbox => checkbox.addEventListener('change', calculatePrices));
+roomDropdown.addEventListener('change', () => {
+    if (validateFormSubmittingOrder()) {
+        calculatePrices();
+    }
+});
+
+checkboxes.forEach(checkbox => checkbox.addEventListener('change', () => {
+    if (validateFormSubmittingOrder()) {
+        calculatePrices();
+    }
+}));
 
 // User feedback after trying to book
 document.addEventListener("DOMContentLoaded", () => {
