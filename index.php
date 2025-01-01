@@ -95,9 +95,9 @@ require_once __DIR__ . '/header.php';
                     </div>
                 </div> <!-- .price -->
 
-                <button type="submit">Submit</button>
+                <button type="submit" class="eight-bit-btn btn-primary">Submit</button>
             </form>
-            <div class="user-feedback">
+            <div class=" user-feedback">
             </div> <!-- .user-feedback -->
         </div> <!-- .inner-wrapper -->
     </section> <!-- #booking -->

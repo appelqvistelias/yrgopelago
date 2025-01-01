@@ -1,3 +1,23 @@
+:root {
+    --retro-black: #121212;
+    --retro-white: #e5e5e5;
+    
+    --primary-btn-background: #209cee;
+    --primary-btn-hover: #108de0;
+    --primary-btn-shadow: #006bb3;
+    
+    --clear-btn-background: #e76e55;
+    --clear-btn-hover: #ce372b;
+    --clear-btn-shadow: #8c2022;
+    
+    --random-btn-background: #92cc41;
+    --random-btn-hover: #89C156;
+    --random-btn-shadow: #4aa52e;
+
+    --button-edge-gray: #303030;
+    --button-text-gray: #dcdcdc;
+  }
+
 * {
     margin: 0;
     padding: 0;
@@ -6,26 +26,4 @@
 
 html {
     font-size: 62.5%; /* 1rem = 10px */
-}
-
-#matrix-drops {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 92rem;
-    z-index: -1;
-}
-
-#hero {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 92rem;
-}
-
-h1 {
-    font-size: 3.6rem;
-    color: white;
 }
