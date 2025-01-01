@@ -94,7 +94,6 @@ fetch('calendar.php')
         return response.json();
     })
     .then(bookedDates => {
-        const roomDropdown = document.getElementById('room');
         const startDateInput = document.getElementById('startdate');
         const endDateInput = document.getElementById('enddate');
         
@@ -106,6 +105,7 @@ fetch('calendar.php')
     .catch(error => console.error('Error fetching booked dates:', error));
 
 // Price calculation for instant user feedback
+const arrivalDateInput = document.getElementById('startdate');
 const departureDateInput = document.getElementById('enddate');
 const roomDropdown = document.querySelector('#room');
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -115,11 +115,11 @@ const featuresPriceElement = document.querySelector('.features-price');
 const totalPriceElement = document.querySelector('.total-price');
 
 function validateDateOrder() {
-    const startDateInput = document.getElementById('startdate').value;
-    const endDateInput = document.getElementById('enddate').value;
+    const startDateInput = document.getElementById('startdate');
+    const endDateInput = document.getElementById('enddate');
 
-    const startDate = new Date(startDateInput);
-    const endDate = new Date(endDateInput);
+    const startDate = new Date(startDateInput.value);
+    const endDate = new Date(endDateInput.value);
 
     if (startDate > endDate) {
         alert("Departure date must be after arrival date");
@@ -132,6 +132,10 @@ function validateDateOrder() {
 }
 
 function calculatePrices() {
+    if (!validateDateOrder()) {
+        return;
+    }
+    
     const selectedRoomOption = roomDropdown.options[roomDropdown.selectedIndex];
     let roomPrice = parseInt(selectedRoomOption.getAttribute('data-price')) || 0;
 
@@ -162,19 +166,23 @@ function calculatePrices() {
     roomPrice *= daysDifference;
     let totalPrice = roomPrice + featuresPrice;
 
-    if (daysDifference > 5) {
-        totalPrice *= 0.7;
-    }
-
     roomPriceElement.textContent = '$' + roomPrice;
     featuresPriceElement.textContent = '$' + featuresPrice;
     totalPriceElement.textContent = '$' + totalPrice;
 }
+arrivalDateInput.addEventListener('change', () => {
+    if (validateDateOrder()) {
+        calculatePrices();
+    }
+});
 
-departureDateInput.addEventListener('change', validateDateOrder);
-roomDropdown.addEventListener('change', validateDateOrder);
+departureDateInput.addEventListener('change', () => {
+    if (validateDateOrder()) {
+        calculatePrices();
+    }
+});
+
 roomDropdown.addEventListener('change', calculatePrices);
-checkboxes.forEach(checkbox => checkbox.addEventListener('change', validateDateOrder));
 checkboxes.forEach(checkbox => checkbox.addEventListener('change', calculatePrices));
 
 // User feedback after trying to book
