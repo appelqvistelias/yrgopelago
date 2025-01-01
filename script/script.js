@@ -175,11 +175,13 @@ function calculatePrices() {
     });
     
     roomPrice *= daysDifference;
-    let totalPrice = roomPrice + featuresPrice;
+    const totalPrice = roomPrice + featuresPrice;
 
-    roomPriceElement.textContent = '$' + roomPrice;
-    featuresPriceElement.textContent = '$' + featuresPrice;
-    totalPriceElement.textContent = '$' + totalPrice;
+    if (startDateInput && endDateInput) {
+        roomPriceElement.textContent = '$' + roomPrice;
+        featuresPriceElement.textContent = '$' + featuresPrice;
+        totalPriceElement.textContent = '$' + totalPrice;
+    }
 }
 
 arrivalDateInput.addEventListener('change', () => {
