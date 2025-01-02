@@ -1,8 +1,11 @@
 :root {
     --retro-black: #121212;
     --retro-white: #e5e5e5;
-
     --matrix-green: #0F0;
+
+    --economy-green: #00ff00;
+    --standard-blue: #00ffff;
+    --luxury-gold: #ffd700;
 
     --room-available: #006400;
     --room-occupied: #8B0000;

@@ -21,6 +21,7 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    text-shadow: 2px 2px 4px rgba(18, 18, 18, 0.7);
 }
 
 .welcome-text {
@@ -67,7 +68,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    text-shadow: 2px 2px 4px rgba(18, 18, 18, 0.7);
     opacity: 0;
     transition: opacity 1s ease-in-out;
 }
@@ -89,14 +89,35 @@
 }
 
 .room-text {
-    font-size: 7rem;
+    position: absolute;
+    left: 5rem;
+    bottom: 3rem;
+    font-size: 6rem;
 }
+
+.economy-room-text {
+    color: var(--retro-white);
+    text-shadow: 0 0 15px var(--economy-green), 0 0 25px var(--economy-green), 2px 2px 4px rgba(0, 0, 0, 0.9);
+ }
+ 
+ .standard-room-text {
+    color: var(--retro-white);
+    text-shadow: 0 0 15px var(--standard-blue), 0 0 25px var(--standard-blue), 2px 2px 4px rgba(0, 0, 0, 0.9);
+ }
+ 
+ .luxury-room-text {
+    color: var(--retro-white);
+    text-shadow: 0 0 15px var(--luxury-gold), 0 0 25px var(--luxury-gold), 2px 2px 4px rgba(0, 0, 0, 0.9);
+ }
 
 /* .special-offer */
 .special-offer {
     background-color: var(--matrix-green);
     color: var(--retro-black);
-    text-align: center;
+}
+
+.special-offer-text {
+    font-size: 2.5rem;
 }
 
 /* #booking section */
