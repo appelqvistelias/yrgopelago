@@ -12,3 +12,9 @@ function isValidUuid(string $uuid): bool
 
     return true;
 }
+
+// Discount function
+function calculateDiscount(float $totalCost): float
+{
+    return round($totalCost * 0.3);
+}

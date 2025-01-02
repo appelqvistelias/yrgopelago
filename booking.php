@@ -56,6 +56,11 @@ try {
             }
         }
 
+        // Adding discount
+        if ($dateDifference >= 5) {
+            $totalCost = calculateDiscount($totalCost);
+        }
+
         // Naming rooms for json-response
         $roomTypes = [1 => 'Economy', 2 => 'Standard', 3 => 'Luxury'];
         $roomType = $roomTypes[$selectedRoom] ?? 'Unknown Room';
