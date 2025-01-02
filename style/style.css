@@ -5,7 +5,7 @@
     left: 0;
     width: 100%;
     height: 92rem;
-    z-index: -1;
+    z-index: -100;
 }
 
 #hero {
@@ -31,7 +31,22 @@ img {
     height: auto;
 }
 
+/* .special-offer */
+
+.special-offer {
+    background-color: var(--matrix-green);
+    color: var(--retro-black);
+    padding: 1rem;
+    margin: 1rem 0;
+    text-align: center;
+}
+
 /* #booking section */
+#booking {
+    background-color: var(--retro-white);
+    color: var(--retro-black);
+}
+
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -60,6 +75,11 @@ img {
 }
 
 /* Retro buttons */
+.button-container {
+    display: flex;
+    gap: 1rem;
+}
+
 .eight-bit-btn {
     position: relative;
     padding: 1rem 2rem;
@@ -72,7 +92,6 @@ img {
 .eight-bit-btn:hover {
     cursor: pointer;
 }
-
 
 .eight-bit-btn::after, .eight-bit-btn::before {
     content: '';
@@ -123,19 +142,4 @@ img {
 
 .btn-clear:active {
     box-shadow: inset 3px 3px 0px 0px var(--clear-btn-shadow);
-}
-
-.btn-random {
-    background-color: var(--random-btn-background);
-    box-shadow: inset -3px -3px 0px 0px var(--random-btn-shadow);
-}
-
-.btn-random:hover {
-    cursor: pointer;
-    background-color: var(--random-btn-hover);
-    box-shadow: inset -5px -5px 0px 0px var(--random-btn-shadow);
-}
-
-.btn-random:active {
-    box-shadow: inset 3px 3px 0px 0px var(--random-btn-shadow);
 }
