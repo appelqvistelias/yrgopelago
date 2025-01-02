@@ -54,6 +54,10 @@
     background-image: url('../images/luxury.png');
 }
 
+.room-text {
+    font-size: 7rem;
+}
+
 /* .special-offer */
 .special-offer {
     background-color: var(--matrix-green);
