@@ -175,12 +175,17 @@ function calculatePrices() {
     });
     
     roomPrice *= daysDifference;
-    const totalPrice = roomPrice + featuresPrice;
+    let totalPrice = roomPrice + featuresPrice;
 
     if (startDateInput && endDateInput) {
         roomPriceElement.textContent = '$' + roomPrice;
         featuresPriceElement.textContent = '$' + featuresPrice;
-        totalPriceElement.textContent = '$' + totalPrice;
+        if (daysDifference >= 5) {
+            totalPrice = Math.round((roomPrice + featuresPrice) * 0.7);
+            totalPriceElement.textContent = '$' + totalPrice + ' (30% off for 5+ days)';
+        } else {
+            totalPriceElement.textContent = '$' + totalPrice;
+        }
     }
 }
 
