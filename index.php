@@ -18,13 +18,28 @@ require_once __DIR__ . '/header.php';
     </section> <!-- #hero -->
 
     <section id="room-info">
-        <div class="inner-wrapper">
-            <h2>Our rooms</h2>
-            <div class="rooms-container">
-                <img src="images/economy.png" alt="economy room">
-                <img src="images/standard.png" alt="standard room">
-            </div> <!-- .rooms-container -->
-        </div> <!-- .inner-wrapper -->
+        <div class="rooms-container">
+            <div class="room" id="economy-room">
+                <div class="room-text">
+                    <h2>Economy</h2>
+                    <p>When traveling on a budget</p>
+                </div> <!-- .room-text -->
+            </div> <!-- .room #economy-room -->
+
+            <div class="room" id="standard-room">
+                <div class="room-text">
+                    <h2>Standard</h2>
+                    <p>When comfort is key</p>
+                </div> <!-- .room-text -->
+            </div> <!-- .room #standard-room -->
+
+            <div class="room" id="luxury-room">
+                <div class="room-text">
+                    <h2>Luxury</h2>
+                    <p>When no expanses were cut</p>
+                </div> <!-- .room-text -->
+            </div> <!-- .room #luxury-room -->
+        </div> <!-- .rooms-container -->
     </section> <!-- #info -->
 
     <div class="special-offer">
