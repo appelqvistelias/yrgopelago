@@ -3,6 +3,9 @@
     --retro-white: #e5e5e5;
 
     --matrix-green: #0F0;
+
+    --room-available: #006400;
+    --room-occupied: #8B0000;
     
     --primary-btn-background: #0F0;
     --primary-btn-hover: #04D300;
@@ -31,5 +34,5 @@ body {
 }
 
 .inner-wrapper {
-    padding: 0 5rem;
+    padding: 2rem 5rem;
 }
