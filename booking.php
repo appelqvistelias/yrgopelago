@@ -57,7 +57,7 @@ try {
         }
 
         // Adding discount
-        if ($dateDifference >= 5) {
+        if ($totalDays >= 5) {
             $totalCost = calculateDiscount($totalCost);
         }
 
