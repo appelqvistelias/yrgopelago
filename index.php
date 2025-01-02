@@ -36,7 +36,7 @@ require_once __DIR__ . '/header.php';
             <div class="room" id="luxury-room">
                 <div class="room-text">
                     <h2>Luxury</h2>
-                    <p>When no expanses were cut</p>
+                    <p>When no expenses were cut</p>
                 </div> <!-- .room-text -->
             </div> <!-- .room #luxury-room -->
         </div> <!-- .rooms-container -->
