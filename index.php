@@ -106,7 +106,10 @@ require_once __DIR__ . '/header.php';
                     </div>
                 </div> <!-- .price -->
 
-                <button type="submit" class="eight-bit-btn btn-primary">Submit</button>
+                <div class="button-container">
+                    <button type="submit" class="eight-bit-btn btn-primary">Submit</button>
+                    <button type="reset" class="eight-bit-btn btn-clear">Clear</button>
+                </div> <!-- .button-container -->
             </form>
             <div class=" user-feedback">
             </div> <!-- .user-feedback -->

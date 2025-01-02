@@ -294,4 +294,11 @@ document.addEventListener("DOMContentLoaded", () => {
             feedbackDiv.appendChild(errorMessage);
         }
     });
+
+    // Event listener for reset button
+    form.addEventListener("reset", () => {
+        roomPriceElement.textContent = '$0';
+        featuresPriceElement.textContent = '$0';
+        totalPriceElement.textContent = '$0';
+    });
 });
