@@ -44,7 +44,7 @@ require_once __DIR__ . '/header.php';
 
     <div class="special-offer">
         <div class="inner-wrapper">
-            <p>Book a room for five or more days and get a 30% discount!</p>
+            <h3>Book a room for five or more days and get a 30% discount!</h3>
         </div> <!-- .inner-wrapper -->
     </div> <!-- .special-offer -->
 

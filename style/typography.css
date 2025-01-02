@@ -2,3 +2,13 @@ body {
     font-family: "VT323", serif;
     font-size: 1.6rem;
 }
+
+h1 {
+    font-size: 5rem;
+    color: var(--retro-white);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+h3 {
+    font-size: 3rem;
+}
