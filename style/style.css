@@ -191,7 +191,8 @@
     cursor: pointer;
 }
 
-.eight-bit-btn::after, .eight-bit-btn::before {
+.eight-bit-btn::after,
+.eight-bit-btn::before {
     content: '';
     position: absolute;
     z-index: -1;
