@@ -17,7 +17,7 @@ require_once __DIR__ . '/header.php';
         </div> <!-- .inner-wrapper -->
     </section> <!-- #hero -->
 
-    <section id="info">
+    <section id="room-info">
         <div class="inner-wrapper">
             <h2>Our rooms</h2>
             <div class="rooms-container">

@@ -21,7 +21,7 @@ h1 {
     color: var(--retro-white);
 }
 
-/* #info section */
+/* #room-info section */
 .rooms-container {
     display: flex;
 }
