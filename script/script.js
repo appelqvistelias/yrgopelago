@@ -165,7 +165,7 @@ function calculatePrices() {
     const endDate = new Date(endDateInput);
 
     const timeDifference = endDate - startDate; // in milliseconds
-    const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24) + 1); // convert to days
+    const totalDays = Math.ceil(timeDifference / (1000 * 60 * 60 * 24) + 1); // convert to days
 
     let featuresPrice = 0;
     checkboxes.forEach(checkbox => {
@@ -174,13 +174,13 @@ function calculatePrices() {
         }
     });
     
-    roomPrice *= daysDifference;
+    roomPrice *= totalDays;
     let totalPrice = roomPrice + featuresPrice;
 
     if (startDateInput && endDateInput) {
         roomPriceElement.textContent = '$' + roomPrice;
         featuresPriceElement.textContent = '$' + featuresPrice;
-        if (daysDifference >= 5) {
+        if (totalDays >= 5) {
             totalPrice = Math.round((roomPrice + featuresPrice) * 0.7);
             totalPriceElement.textContent = '$' + totalPrice + ' (30% off for 5+ days)';
         } else {
