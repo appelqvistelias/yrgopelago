@@ -42,10 +42,6 @@
     opacity: 1;
 }
 
-.room-text {
-    font-size: 10rem;
-}
-
 #economy-room {
     background-image: url('../images/economy.png');
 }
