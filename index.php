@@ -22,29 +22,29 @@ require_once __DIR__ . '/header.php';
             <div class="room" id="economy-room">
                 <div class="room-text">
                     <h2>Economy</h2>
-                    <p>When traveling on a budget</p>
+                    <p>Perfect for budget-conscious travelers</p>
                 </div> <!-- .room-text -->
             </div> <!-- .room #economy-room -->
 
             <div class="room" id="standard-room">
                 <div class="room-text">
                     <h2>Standard</h2>
-                    <p>When comfort is key</p>
+                    <p>Ideal when comfort is your priority</p>
                 </div> <!-- .room-text -->
             </div> <!-- .room #standard-room -->
 
             <div class="room" id="luxury-room">
                 <div class="room-text">
                     <h2>Luxury</h2>
-                    <p>When no expenses were cut</p>
+                    <p>The ultimate indulgence with no compromises</p>
                 </div> <!-- .room-text -->
             </div> <!-- .room #luxury-room -->
         </div> <!-- .rooms-container -->
-    </section> <!-- #info -->
+    </section> <!-- #room-info -->
 
     <div class="special-offer">
         <div class="inner-wrapper">
-            <h3>Book a room for five or more days to get a 30% discount!</h3>
+            <h3>Enjoy a 30% discount when you book a room for five days or more!</h3>
         </div> <!-- .inner-wrapper -->
     </div> <!-- .special-offer -->
 
