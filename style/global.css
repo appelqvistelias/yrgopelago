@@ -1,21 +1,18 @@
 :root {
     --retro-black: #121212;
     --retro-white: #e5e5e5;
+
+    --matrix-green: #0F0;
     
-    --primary-btn-background: #209cee;
-    --primary-btn-hover: #108de0;
-    --primary-btn-shadow: #006bb3;
+    --primary-btn-background: #0F0;
+    --primary-btn-hover: #04D300;
+    --primary-btn-shadow: #007700;
     
     --clear-btn-background: #e76e55;
     --clear-btn-hover: #ce372b;
     --clear-btn-shadow: #8c2022;
-    
-    --random-btn-background: #92cc41;
-    --random-btn-hover: #89C156;
-    --random-btn-shadow: #4aa52e;
 
     --button-edge-gray: #303030;
-    --button-text-gray: #dcdcdc;
   }
 
 * {
