@@ -105,11 +105,25 @@
     color: var(--retro-black);
 }
 
+.booking-grid {
+    display: grid;
+    grid-template-columns: 6fr 4fr;
+    gap: 2rem;
+}
+
+.calendar-container, .booking-form-container {
+    width: 100%;
+}
+
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 0.5rem;
-    max-width: 100rem;
+}
+
+.weekday, .calendar-day {
+    border-right: 1.5px solid var(--retro-black);
+    border-bottom: 1.5px solid var(--retro-black);
 }
 
 .calendar-day {
@@ -130,6 +144,11 @@
 
 .error-message {
     color: firebrick;
+}
+
+.booker {
+    display: flex;
+    flex-direction: column;
 }
 
 /* Retro buttons */
