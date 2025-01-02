@@ -28,7 +28,9 @@ require_once __DIR__ . '/header.php';
     </section> <!-- #info -->
 
     <div class="special-offer">
-        <p>Book a room for five or more days and get a 30% discount!</p>
+        <div class="inner-wrapper">
+            <p>Book a room for five or more days and get a 30% discount!</p>
+        </div> <!-- .inner-wrapper -->
     </div> <!-- .special-offer -->
 
     <section id="booking">
