@@ -13,7 +13,14 @@ require_once __DIR__ . '/header.php';
     <section id="hero">
         <canvas id="matrix-drops"></canvas>
         <div class="inner-wrapper">
-            <h1>Welcome to the wonderful Back-End Hotel on Mainframe Island</h1>
+            <div class="welcome-sequence">
+                <h2 class="welcome-text">Initializing welcome sequence...</h2>
+                <h2 class="welcome-text">System status: Online</h2>
+                <h2 class="welcome-text">Accessing digital paradise...</h2>
+                <h2 class="welcome-text">Welcome, user</h2>
+                <h2 class="welcome-text">to</h2>
+                <h1 class="hotel-name">The Back-End Hotel</h1>
+            </div> <!-- .welcome-sequence -->
         </div> <!-- .inner-wrapper -->
     </section> <!-- #hero -->
 
