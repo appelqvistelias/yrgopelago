@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Scroll down to rooms
     const scrollDown = document.querySelector('.scroll-down');
-    const roomInfo = document.querySelector('#room-info');
+    const specialOffer = document.querySelector('.special-offer');
 
     scrollDown.addEventListener('click', () => {
-        roomInfo.scrollIntoView({ behavior: 'smooth' });
+        specialOffer.scrollIntoView({ behavior: 'smooth', block: 'end' });
     });
 
     // Room display
