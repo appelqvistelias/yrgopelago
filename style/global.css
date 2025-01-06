@@ -1,24 +1,20 @@
 :root {
+    --matrix-green: #0F0;
     --retro-black: #121212;
     --retro-white: #e5e5e5;
-    --matrix-green: #0F0;
+    --retro-gray: #303030;
 
     --economy-green: #00ff00;
     --standard-blue: #00ffff;
     --luxury-gold: #ffd700;
 
-    --room-available: #006400;
-    --room-occupied: #8B0000;
+    --submit-btn-background: #1f4d1f;
+    --submit-btn-hover: #173717;
+    --submit-btn-shadow: #0b250b;
     
-    --primary-btn-background: #0F0;
-    --primary-btn-hover: #04D300;
-    --primary-btn-shadow: #007700;
-    
-    --clear-btn-background: #e76e55;
-    --clear-btn-hover: #ce372b;
-    --clear-btn-shadow: #8c2022;
-
-    --button-edge-gray: #303030;
+    --clear-btn-background: #5a0c0c;
+    --clear-btn-hover: #4a0a0a;
+    --clear-btn-shadow: #2b0505;
   }
 
 * {

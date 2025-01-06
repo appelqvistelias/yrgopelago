@@ -154,8 +154,7 @@
 
 /* #booking section */
 #booking {
-    background-color: var(--retro-white);
-    color: var(--retro-black);
+    color: var(--matrix-green);
 }
 
 .booking-grid {
@@ -175,8 +174,8 @@
 }
 
 .weekday, .calendar-day {
-    border-right: 1.5px solid var(--retro-black);
-    border-bottom: 1.5px solid var(--retro-black);
+    border-right: 1.5px solid var(--matrix-green);
+    border-bottom: 1.5px solid var(--matrix-green);
 }
 
 .calendar-day {
@@ -184,11 +183,11 @@
 }
 
 .available {
-    color: var(--room-available);
+    color: var(--matrix-green);
 }
 
 .booked {
-    color: var(--room-occupied);
+    color: var(--retro-gray);
 }
 
 .success-message {
@@ -207,9 +206,10 @@
 /* Retro buttons */
 .eight-bit-btn {
     position: relative;
-    padding: 1rem 2rem;
-    font-family: "Press Start 2P", system-ui;
-    color: var(--retro-black);
+    padding: 0.6rem 1.5rem;
+    font-family: "VT323", serif;
+    font-size: 1.8rem;
+    color: var(--matrix-green);
     border: none;
     -webkit-tap-highlight-color: transparent;
 }
@@ -219,7 +219,7 @@
     content: '';
     position: absolute;
     z-index: -1;
-    background-color: var(--retro-black);
+    background-color: var(--matrix-green);
 }
 
 .eight-bit-btn::after {
@@ -236,9 +236,9 @@
     height: 115%;
 }
 
-.btn-primary {
-    background-color: var(--primary-btn-background);
-    box-shadow: inset -3px -3px 0px 0px var(--primary-btn-shadow);
+.btn-submit {
+    background-color: var(--submit-btn-background);
+    box-shadow: inset -3px -3px 0px 0px var(--submit-btn-shadow);
 }
 
 .btn-clear {
@@ -246,20 +246,20 @@
     box-shadow: inset -3px -3px 0px 0px var(--clear-btn-shadow);
 }
 
-.btn-primary:hover {
+.btn-submit:hover {
     cursor: pointer;
-    background-color: var(--primary-btn-hover);
-    box-shadow: inset -5px -5px 0px 0px var(--primary-btn-shadow);
+    background-color: var(--submit-btn-hover);
+    box-shadow: inset -4px -4px 0px 0px var(--submit-btn-shadow);
 }
 
-.btn-primary:active {
-    box-shadow: inset 3px 3px 0px 0px var(--primary-btn-shadow);
+.btn-submit:active {
+    box-shadow: inset 3px 3px 0px 0px var(--submit-btn-shadow);
 }
 
 .btn-clear:hover {
     cursor: pointer;
     background-color: var(--clear-btn-hover);
-    box-shadow: inset -5px -5px 0px 0px var(--clear-btn-shadow);
+    box-shadow: inset -4px -4px 0px 0px var(--clear-btn-shadow);
 }
 
 .btn-clear:active {
