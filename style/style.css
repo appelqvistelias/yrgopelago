@@ -173,11 +173,6 @@
 }
 
 /* Retro buttons */
-.button-container {
-    display: flex;
-    gap: 1rem;
-}
-
 .eight-bit-btn {
     position: relative;
     padding: 1rem 2rem;
@@ -185,10 +180,6 @@
     color: var(--retro-black);
     border: none;
     -webkit-tap-highlight-color: transparent;
-}
-
-.eight-bit-btn:hover {
-    cursor: pointer;
 }
 
 .eight-bit-btn::after,
@@ -218,6 +209,11 @@
     box-shadow: inset -3px -3px 0px 0px var(--primary-btn-shadow);
 }
 
+.btn-clear {
+    background-color: var(--clear-btn-background);
+    box-shadow: inset -3px -3px 0px 0px var(--clear-btn-shadow);
+}
+
 .btn-primary:hover {
     cursor: pointer;
     background-color: var(--primary-btn-hover);
@@ -228,11 +224,6 @@
     box-shadow: inset 3px 3px 0px 0px var(--primary-btn-shadow);
 }
 
-.btn-clear {
-    background-color: var(--clear-btn-background);
-    box-shadow: inset -3px -3px 0px 0px var(--clear-btn-shadow);
-}
-
 .btn-clear:hover {
     cursor: pointer;
     background-color: var(--clear-btn-hover);
@@ -241,4 +232,11 @@
 
 .btn-clear:active {
     box-shadow: inset 3px 3px 0px 0px var(--clear-btn-shadow);
+}
+
+.button-container {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+    z-index: 0;
 }
