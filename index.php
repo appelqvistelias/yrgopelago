@@ -13,18 +13,20 @@ require_once __DIR__ . '/header.php';
     <section id="hero">
         <canvas id="matrix-drops"></canvas>
         <div class="inner-wrapper">
-            <div class="welcome-sequence">
-                <h2 class="welcome-text">Initializing welcome sequence...</h2>
-                <h2 class="welcome-text">System status: Online</h2>
-                <h2 class="welcome-text">Accessing digital paradise...</h2>
-                <h2 class="welcome-text">Welcome, user</h2>
-                <h2 class="welcome-text">to</h2>
-                <h1 class="hotel-name">The Back-End Hotel</h1>
-            </div> <!-- .welcome-sequence -->
-            <div class="scroll-down">
-                <p>O</p>
-                <div class="scroll-down-arrow"></div>
-            </div> <!-- .scroll-down -->
+            <div class="hero-flex-container">
+                <div class="welcome-sequence">
+                    <h2 class="welcome-text">Initializing welcome sequence...</h2>
+                    <h2 class="welcome-text">System status: Online</h2>
+                    <h2 class="welcome-text">Accessing digital paradise...</h2>
+                    <h2 class="welcome-text">Welcome, user</h2>
+                    <h2 class="welcome-text">to</h2>
+                    <h1 class="hotel-name">The Back-End Hotel</h1>
+                </div> <!-- .welcome-sequence -->
+                <div class="scroll-down">
+                    <p>Scroll down to book your stay</p>
+                    <div class="scroll-down-arrow"></div>
+                </div> <!-- .scroll-down -->
+            </div> <!-- .hero-flex-container -->
         </div> <!-- .inner-wrapper -->
     </section> <!-- #hero -->
 

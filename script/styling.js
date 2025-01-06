@@ -1,4 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Scroll down to rooms
+    const scrollDown = document.querySelector('.scroll-down');
+    const roomInfo = document.querySelector('#room-info');
+
+    scrollDown.addEventListener('click', () => {
+        roomInfo.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Room display
     const rooms = document.querySelectorAll('.room');
     let currentRoomIndex = 0;
 

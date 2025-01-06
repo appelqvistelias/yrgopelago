@@ -16,6 +16,12 @@
     height: 92rem;
 }
 
+.hero-flex-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .welcome-sequence {
     display: flex;
     flex-direction: column;
@@ -49,6 +55,32 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.scroll-down {
+    position: absolute;
+    bottom: 3rem;
+    padding: 1rem;
+    background-color: var(--retro-black);
+    color: var(--matrix-green);
+    border: 0.5px solid var(--matrix-green);
+    border-radius: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.scroll-down:hover {
+    transform: translateY(5px);
+}
+
+.scroll-down-arrow {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid var(--matrix-green);
+    margin: 1rem auto 0;
 }
 
 /* #room-info section */
