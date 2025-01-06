@@ -143,13 +143,33 @@
  }
 
 /* .special-offer */
+.special-offer-flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .special-offer {
     background-color: var(--matrix-green);
     color: var(--retro-black);
 }
 
 .special-offer-text {
-    font-size: 2.5rem;
+    font-size: 3rem;
+}
+
+.special-offer-btn {
+    padding: 1rem;
+    background-color: var(--retro-black);
+    color: var(--matrix-green);
+    border-radius: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.special-offer-btn:hover {
+    transform: translateY(5px);
 }
 
 /* #booking section */

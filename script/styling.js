@@ -22,4 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Change room every 5 seconds
     setInterval(showNextRoom, 5000);
+
+    // Special offer button scroll
+    const specialOfferBtn = document.querySelector('.special-offer-btn');
+    const booking = document.querySelector('#booking');
+
+    specialOfferBtn.addEventListener('click', () => {
+        booking.scrollIntoView({ behavior: 'smooth' });
+    });
+
 });
