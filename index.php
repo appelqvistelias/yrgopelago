@@ -108,7 +108,7 @@ require_once __DIR__ . '/header.php';
                         </div> <!-- .room-selection -->
 
                         <div class="features-select">
-                            <label>Additional features</label>
+                            <p>Additional features</p>
                             <div class="feature">
                                 <input type="checkbox" class="checkboxes" id="bathtub" name="features-options[]" value="1" data-price="1">
                                 <label for="bathtub">Bathtub $1</label>
@@ -160,8 +160,13 @@ require_once __DIR__ . '/header.php';
                             <button type="reset" class="eight-bit-btn btn-clear">Clear</button>
                         </div> <!-- .button-container -->
                     </form>
-                    <div class="user-feedback">
+
+                    <div class="success-feedback">
                     </div> <!-- .user-feedback -->
+
+                    <div class="error-feedback">
+                    </div> <!-- .error-message -->
+
                 </div> <!-- .booking-form-container -->
             </div> <!-- .booking-grid -->
         </div> <!-- .inner-wrapper -->

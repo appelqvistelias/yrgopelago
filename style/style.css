@@ -270,6 +270,10 @@ select {
     gap: 1rem;
 }
 
+.features-select p {
+    font-size: 1.8rem;
+}
+
 .checkboxes {
     border: 1px solid var(--matrix-green);
     width: 1.5rem;
@@ -308,8 +312,20 @@ select {
     margin-bottom: 2rem;
 }
 
+.success-feedback {
+    display: none;
+    border: 2px solid var(--matrix-green);
+    padding: 1rem;
+}
+
 .success-message {
     color: var(--matrix-green);
+}
+
+.error-feedback {
+    display: none;
+    border: 2px solid var(--error-red);
+    padding: 1rem;
 }
 
 .error-message {
@@ -383,6 +399,7 @@ select {
     position: relative;
     display: flex;
     gap: 2rem;
+    margin-bottom: 2rem;
 }
 
 /* Footer */
