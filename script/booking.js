@@ -217,14 +217,18 @@ checkboxes.forEach(checkbox => checkbox.addEventListener('change', () => {
 // User feedback after trying to book
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("booking-form");
-    const feedbackDiv = document.querySelector(".user-feedback");
+    const successFeedback = document.querySelector(".success-feedback");
+    const errorFeedback = document.querySelector(".error-feedback");
 
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         // Clear old feedback
-        while (feedbackDiv.firstChild) {
-            feedbackDiv.removeChild(feedbackDiv.firstChild);
+        while (successFeedback.firstChild) {
+            successFeedback.removeChild(successFeedback.firstChild);
+        }
+        while (errorFeedback.firstChild) {
+            errorFeedback.removeChild(errorFeedback.firstChild);
         }
 
         // Collect data from form
@@ -241,58 +245,64 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (response.ok) {
                 // Booking successful
+                successFeedback.style.display = 'inline-block';
+                errorFeedback.style.display = 'none';
                 const successMessage = document.createElement("p");
                 successMessage.classList.add('success-message');
                 successMessage.textContent = "Booking successful!";
-                feedbackDiv.appendChild(successMessage);
+                successFeedback.appendChild(successMessage);
 
                 const islandName = document.createElement("p");
                 islandName.textContent = "Island Name: " + result.data['island'];
-                feedbackDiv.appendChild(islandName);
+                successFeedback.appendChild(islandName);
 
                 const hotelName = document.createElement("p");
                 hotelName.textContent = "Hotel Name: " + result.data['hotel'];
-                feedbackDiv.appendChild(hotelName);
+                successFeedback.appendChild(hotelName);
 
                 const arrivalDate = document.createElement("p");
                 arrivalDate.textContent = "Arrival: " + result.data['arrival_date'];
-                feedbackDiv.appendChild(arrivalDate);
+                successFeedback.appendChild(arrivalDate);
 
                 const departureDate = document.createElement("p");
                 departureDate.textContent = "Departure: " + result.data['departure_date'];
-                feedbackDiv.appendChild(departureDate);
+                successFeedback.appendChild(departureDate);
 
                 const totalCost = document.createElement("p");
                 totalCost.textContent = "Total Cost: $" + result.data['total_cost'];
-                feedbackDiv.appendChild(totalCost);
+                successFeedback.appendChild(totalCost);
                 
                 const stars = document.createElement("p");
                 stars.textContent = "Stars: " + result.data['stars'];
-                feedbackDiv.appendChild(stars);
+                successFeedback.appendChild(stars);
 
                 const roomType = document.createElement("p");
                 roomType.textContent = "Room type: " + result.data['room_type'];
-                feedbackDiv.appendChild(roomType);
+                successFeedback.appendChild(roomType);
 
                 const features = document.createElement("p");
                 features.textContent = "Features: " + result.data['features'].join(', ');
-                feedbackDiv.appendChild(features);
+                successFeedback.appendChild(features);
 
                 const additionalInfo = document.createElement("p");
                 additionalInfo.textContent = result.data['additional_info']['greetings'];
-                feedbackDiv.appendChild(additionalInfo);
+                successFeedback.appendChild(additionalInfo);
 
             } else {
                 const errorMessage = document.createElement("p");
                 errorMessage.classList.add('error-message');
                 errorMessage.textContent = `Error: ${result.message}`;
-                feedbackDiv.appendChild(errorMessage);
+                errorFeedback.appendChild(errorMessage);
+                successFeedback.style.display = 'none';
+                errorFeedback.style.display = 'inline-block';
             }
         } catch (error) {
             const errorMessage = document.createElement("p");
             errorMessage.classList.add('error-message');
             errorMessage.textContent = `Something went wrong: ${error.message}`;
-            feedbackDiv.appendChild(errorMessage);
+            errorFeedback.appendChild(errorMessage);
+            successFeedback.style.display = 'none';
+            errorFeedback.style.display = 'inline-block';
         }
     });
 
@@ -301,5 +311,6 @@ document.addEventListener("DOMContentLoaded", () => {
         roomPriceElement.textContent = '$0';
         featuresPriceElement.textContent = '$0';
         totalPriceElement.textContent = '$0';
+        errorFeedback.style.display = 'none';
     });
 });
