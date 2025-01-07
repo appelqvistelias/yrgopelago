@@ -32,7 +32,7 @@ body {
     color: var(--retro-white);
 }
 
-input {
+input, select {
     all: unset;
 }
 
