@@ -32,6 +32,10 @@ body {
     color: var(--retro-white);
 }
 
+input {
+    all: unset;
+}
+
 .inner-wrapper {
     padding: 2rem 5rem;
 }
