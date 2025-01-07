@@ -313,7 +313,7 @@ select {
 }
 
 .error-message {
-    color: firebrick;
+    color: var(--error-red);
 }
 
 /* Retro buttons */
