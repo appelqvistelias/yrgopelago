@@ -180,7 +180,7 @@
 .booking-grid {
     display: grid;
     grid-template-columns: 7fr 3fr;
-    gap: 2rem;
+    gap: 3rem;
 }
 
 h3 {
@@ -219,15 +219,15 @@ label {
     font-size: 1.8rem;
 }
 
-.arrival, .departure {
-    display: flex;
-    flex-direction: column;
-}
-
 .arrival-departure {
     display: flex;
     gap: 2rem;
     margin-bottom: 2rem;
+}
+
+.arrival, .departure {
+    display: flex;
+    flex-direction: column;
 }
 
 #startdate, #enddate {
@@ -236,11 +236,18 @@ label {
     padding: 0.5rem 1rem;
     font-size: 1.8rem;
     width: 10rem;
+    cursor: pointer;
 }
 
 #startdate::-webkit-calendar-picker-indicator,
 #enddate::-webkit-calendar-picker-indicator {
     filter: invert(1);
+}
+
+.room-selection, .features-select {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
 }
 
 select {
@@ -249,11 +256,29 @@ select {
     padding: 0.5rem 1rem;
     font-size: 1.8rem;
     width: 15rem;
+    color: var(--matrix-green);
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%230F0" class="bi bi-caret-down-fill" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 6.345a.5.5 0 0 1 .708-.708l4.096 4.096 4.096-4.096a.5.5 0 0 1 .708.708l-4.796 4.796a.5.5 0 0 1-.708 0z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    cursor: pointer;
 }
 
-.room-selection {
+.feature {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    padding-top: 0.5rem;
+    gap: 1rem;
+}
+
+.checkboxes {
+    border: 1px solid var(--matrix-green);
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+}
+
+.checkboxes:checked {
+    background-color: var(--matrix-green);
 }
 
 #firstname, #lastname, #transferCode {
@@ -267,6 +292,19 @@ select {
 .booker {
     display: flex;
     flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.first-name, .last-name, .transfer-code {
+    display: flex;
+    flex-direction: column;
+}
+
+.prices {
+    font-size: 1.8rem;
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
 
 .success-message {
