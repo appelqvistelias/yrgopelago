@@ -179,18 +179,23 @@
 
 .booking-grid {
     display: grid;
-    grid-template-columns: 6fr 4fr;
+    grid-template-columns: 7fr 3fr;
     gap: 2rem;
 }
 
-.calendar-container, .booking-form-container {
-    width: 100%;
+h3 {
+    font-size: 3.2rem;
+    margin-bottom: 1rem;
 }
 
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 0.5rem;
+}
+
+.weekday, .date-number {
+    font-size: 2.4rem;
 }
 
 .weekday, .calendar-day {
@@ -210,17 +215,66 @@
     color: var(--retro-gray);
 }
 
+label {
+    font-size: 1.8rem;
+}
+
+.arrival, .departure {
+    display: flex;
+    flex-direction: column;
+}
+
+.arrival-departure {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+#startdate, #enddate {
+    background-color: var(--retro-black);
+    border: 2px solid var(--matrix-green);
+    padding: 0.5rem 1rem;
+    font-size: 1.8rem;
+    width: 10rem;
+}
+
+#startdate::-webkit-calendar-picker-indicator,
+#enddate::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+select {
+    background-color: var(--retro-black);
+    border: 2px solid var(--matrix-green);
+    padding: 0.5rem 1rem;
+    font-size: 1.8rem;
+    width: 15rem;
+}
+
+.room-selection {
+    display: flex;
+    flex-direction: column;
+}
+
+#firstname, #lastname, #transferCode {
+    background-color: var(--retro-black);
+    border: 2px solid var(--matrix-green);
+    padding: 0.5rem 1rem;
+    font-size: 1.8rem;
+    width: 30rem;
+}
+
+.booker {
+    display: flex;
+    flex-direction: column;
+}
+
 .success-message {
     color: forestgreen;
 }
 
 .error-message {
     color: firebrick;
-}
-
-.booker {
-    display: flex;
-    flex-direction: column;
 }
 
 /* Retro buttons */
@@ -289,6 +343,5 @@
 .button-container {
     position: relative;
     display: flex;
-    gap: 1rem;
-    z-index: 0;
+    gap: 2rem;
 }
