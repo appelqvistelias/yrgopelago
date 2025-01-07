@@ -42,12 +42,18 @@
 .welcome-text:nth-child(3) { animation-delay: 3.5s; }
 .welcome-text:nth-child(4) { animation-delay: 5s; }
 .welcome-text:nth-child(5) { animation-delay: 6.5s; }
+
 .hotel-name { 
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.5s ease-out forwards;
     animation-delay: 8s;
     font-size: 7rem;
+}
+
+.stars {
+    animation-delay: 8s;
+    font-size: 5rem;
 }
 
 @keyframes fadeInUp {

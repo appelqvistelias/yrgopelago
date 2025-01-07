@@ -21,6 +21,7 @@ require_once __DIR__ . '/header.php';
                     <h2 class="welcome-text">Welcome, user</h2>
                     <h2 class="welcome-text">to</h2>
                     <h1 class="hotel-name">The Back-End Hotel</h1>
+                    <h2 class="welcome-text stars">★ ★ ★</h2>
                 </div> <!-- .welcome-sequence -->
                 <div class="scroll-down">
                     <p>Scroll down to book your stay</p>
