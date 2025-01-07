@@ -84,17 +84,21 @@ require_once __DIR__ . '/header.php';
                 </div> <!-- .calendar-container -->
 
                 <div class="booking-form-container">
+                    <h3>Book your stay</h3>
                     <form id="booking-form" method="post" action="index.php">
                         <div class="arrival-departure">
-                            <label for="startdate">Arrival:</label>
-                            <input type="date" id="startdate" name="startdate" min="2025-01-01" max="2025-01-31" required>
-
-                            <label for="enddate">Departure:</label>
-                            <input type="date" id="enddate" name="enddate" min="2025-01-01" max="2025-01-31" required>
+                            <div class="arrival">
+                                <label for="startdate">Arrival</label>
+                                <input type="date" id="startdate" name="startdate" min="2025-01-01" max="2025-01-31" required>
+                            </div> <!-- .arrival -->
+                            <div class="departure">
+                                <label for="enddate">Departure</label>
+                                <input type="date" id="enddate" name="enddate" min="2025-01-01" max="2025-01-31" required>
+                            </div> <!-- .departure -->
                         </div> <!-- .arrival-departure -->
 
                         <div class="room-selection">
-                            <label for="room">Select room type:</label>
+                            <label for="room">Select room</label>
                             <select id="room" name="room" required>
                                 <option value="" disabled selected>Room Type</option>
                                 <option value="1" data-price="1">Economy $1/day</option>
