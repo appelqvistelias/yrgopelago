@@ -23,6 +23,7 @@ function createCalendar(bookedDates) {
 
         // Add the date number
         const dateNumber = document.createElement('div');
+        dateNumber.className = 'date-number';
         dateNumber.textContent = day;
         dayCell.appendChild(dateNumber);
 
