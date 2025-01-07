@@ -311,6 +311,7 @@ document.addEventListener("DOMContentLoaded", () => {
         roomPriceElement.textContent = '$0';
         featuresPriceElement.textContent = '$0';
         totalPriceElement.textContent = '$0';
+        successFeedback.style.display = 'none';
         errorFeedback.style.display = 'none';
     });
 });
