@@ -292,6 +292,7 @@ select {
 .booker {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
     margin-bottom: 2rem;
 }
 
@@ -308,7 +309,7 @@ select {
 }
 
 .success-message {
-    color: forestgreen;
+    color: var(--matrix-green);
 }
 
 .error-message {
@@ -382,4 +383,12 @@ select {
     position: relative;
     display: flex;
     gap: 2rem;
+}
+
+/* Footer */
+
+footer {
+    color: var(--matrix-green);
+    margin-top: 2rem;
+    border-top: 2px solid var(--matrix-green);
 }
