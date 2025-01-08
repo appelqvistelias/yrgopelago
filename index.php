@@ -73,6 +73,8 @@ require_once __DIR__ . '/header.php';
             <div class="booking-grid">
                 <div class="calendar-container">
                     <h3>January 2025</h3>
+                    <p class="available">Available</p>
+                    <p class="booked">Occupied</p>
                     <div class="calendar-grid">
                         <div class="weekday">Mon</div>
                         <div class="weekday">Tue</div>
