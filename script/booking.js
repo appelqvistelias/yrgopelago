@@ -1,6 +1,12 @@
 // Visual calendar function
 function createCalendar(bookedDates) {
     const calendarGrid = document.querySelector('.calendar-grid');
+
+    // Clear old calendar
+    while (calendarGrid.firstChild) {
+        calendarGrid.removeChild(calendarGrid.firstChild);
+    }
+
     // Hard coded due to assignment
     const year = 2025;
     const month = 0;
@@ -306,6 +312,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 gif.style.width = '300px';
                 gif.style.height = 'auto';
                 successFeedbackImg.appendChild(gif);
+
+                // Update calendar
+                const calendarResponse = await fetch('calendar.php');
+                const bookedDates = await calendarResponse.json();
+                createCalendar(bookedDates);
 
             } else {
                 const errorMessage = document.createElement("p");
