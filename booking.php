@@ -11,13 +11,13 @@ try {
     $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $startDate = new DateTime(trim(htmlspecialchars($_POST['startdate'])));
-        $endDate = new DateTime(trim(htmlspecialchars($_POST['enddate'])));
-        $selectedRoom = trim(htmlspecialchars($_POST['room']));
+        $startDate = new DateTime(sanitizeInput($_POST['startdate']));
+        $endDate = new DateTime(sanitizeInput($_POST['enddate']));
+        $selectedRoom = sanitizeInput($_POST['room']);
         $selectedFeatures = isset($_POST['features-options']) ? array_map('trim', $_POST['features-options']) : [];
-        $firstName = trim(htmlspecialchars($_POST['firstname']));
-        $lastName = trim(htmlspecialchars($_POST['lastname']));
-        $transferCode = trim(htmlspecialchars($_POST['transferCode']));
+        $firstName = sanitizeInput($_POST['firstname']);
+        $lastName = sanitizeInput($_POST['lastname']);
+        $transferCode = sanitizeInput($_POST['transferCode']);
 
         // Validate date range
         if ($startDate > $endDate || $startDate < new DateTime('2025-01-01') || $endDate > new DateTime('2025-01-31')) {

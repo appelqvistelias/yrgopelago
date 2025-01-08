@@ -19,3 +19,9 @@ function calculateDiscount(float $totalCost): float
     $discount = $totalCost * 0.7;
     return round($discount);
 }
+
+// Sanitize input
+function sanitizeInput(string $input): string
+{
+    return trim(htmlspecialchars($input));
+}
