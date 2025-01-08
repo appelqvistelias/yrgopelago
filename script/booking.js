@@ -247,60 +247,68 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Booking successful
                 successFeedback.style.display = 'inline-block';
                 errorFeedback.style.display = 'none';
-                const successMessage = document.createElement("p");
+                const successFeedbackText = document.createElement("div");
+                const successFeedbackImg = document.createElement("div");
+                successFeedbackImg.style.display = 'flex';
+                successFeedbackImg.style.flexDirection = 'column';
+                successFeedbackImg.style.alignItems = 'center';
+                successFeedback.appendChild(successFeedbackText);
+                successFeedback.appendChild(successFeedbackImg);
+
+                const successMessage = document.createElement("h3");
                 successMessage.classList.add('success-message');
                 successMessage.textContent = "Booking successful!";
-                successFeedback.appendChild(successMessage);
+                successFeedbackText.appendChild(successMessage);
 
                 const islandName = document.createElement("p");
                 islandName.textContent = "Island Name: " + result.data['island'];
-                successFeedback.appendChild(islandName);
+                successFeedbackText.appendChild(islandName);
 
                 const hotelName = document.createElement("p");
                 hotelName.textContent = "Hotel Name: " + result.data['hotel'];
-                successFeedback.appendChild(hotelName);
+                successFeedbackText.appendChild(hotelName);
 
                 const arrivalDate = document.createElement("p");
                 arrivalDate.textContent = "Arrival: " + result.data['arrival_date'];
-                successFeedback.appendChild(arrivalDate);
+                successFeedbackText.appendChild(arrivalDate);
 
                 const departureDate = document.createElement("p");
                 departureDate.textContent = "Departure: " + result.data['departure_date'];
-                successFeedback.appendChild(departureDate);
+                successFeedbackText.appendChild(departureDate);
 
                 const totalCost = document.createElement("p");
                 totalCost.textContent = "Total Cost: $" + result.data['total_cost'];
-                successFeedback.appendChild(totalCost);
+                successFeedbackText.appendChild(totalCost);
                 
                 const stars = document.createElement("p");
                 stars.textContent = "Stars: " + result.data['stars'];
-                successFeedback.appendChild(stars);
+                successFeedbackText.appendChild(stars);
 
                 const roomType = document.createElement("p");
                 roomType.textContent = "Room type: " + result.data['room_type'];
-                successFeedback.appendChild(roomType);
+                successFeedbackText.appendChild(roomType);
 
                 const features = document.createElement("p");
                 features.textContent = "Features: " + result.data['features'].join(', ');
-                successFeedback.appendChild(features);
+                successFeedbackText.appendChild(features);
 
-                const additionalInfo = document.createElement("p");
-                additionalInfo.textContent = result.data['additional_info']['greetings'];
-                successFeedback.appendChild(additionalInfo);
+                const greeting = document.createElement("p");
+                greeting.textContent = result.data['additional_info']['greetings'];
+                successFeedbackText.appendChild(greeting);
 
                 const gif = document.createElement("img");
                 gif.src = result.data['additional_info']['gif_url'];
                 gif.style.marginTop = '10px';
                 gif.style.width = '300px';
                 gif.style.height = 'auto';
-                successFeedback.appendChild(gif);
+                successFeedbackImg.appendChild(gif);
 
                 const img = document.createElement("img");
                 img.src = result.data['additional_info']['img'];
                 img.style.marginTop = '10px';
                 img.style.width = '300px';
                 img.style.height = 'auto';
-                successFeedback.appendChild(img);
+                successFeedbackImg.appendChild(img);
 
             } else {
                 const errorMessage = document.createElement("p");
