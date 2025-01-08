@@ -140,7 +140,7 @@ try {
                             'arrival_date' => $startDate->format('Y-m-d'),
                             'departure_date' => $endDate->format('Y-m-d'),
                             'total_cost' => $totalCost,
-                            'stars' => 3,
+                            'stars' => 4,
                             'room_type' => $roomType,
                             'features' => $selectedFeaturesNames,
                             'additional_info' => [
