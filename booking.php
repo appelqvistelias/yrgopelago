@@ -135,7 +135,7 @@ try {
                     echo json_encode([
                         'status' => 'success',
                         'data' => [
-                            'island' => 'Main Frame Island',
+                            'island' => 'Mainframe Island',
                             'hotel' => 'Back-End Hotel',
                             'arrival_date' => $startDate->format('Y-m-d'),
                             'departure_date' => $endDate->format('Y-m-d'),
