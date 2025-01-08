@@ -144,7 +144,9 @@ try {
                             'room_type' => $roomType,
                             'features' => $selectedFeaturesNames,
                             'additional_info' => [
-                                'greetings' => 'Thank you for choosing Back-End Hotel!'
+                                'greetings' => 'Thank you for choosing Back-End Hotel!',
+                                'gif_url' => 'https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdXQ2Ynh4MjlpMjFncWU0aHV2dHR2OHJ0aHkzYmJkNWY1MHZybmJkciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MC6eSuC3yypCU/giphy.gif',
+                                'img' => '/images/neo.png'
                             ]
                         ]
                     ]);

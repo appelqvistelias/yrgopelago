@@ -288,6 +288,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 additionalInfo.textContent = result.data['additional_info']['greetings'];
                 successFeedback.appendChild(additionalInfo);
 
+                const gif = document.createElement("img");
+                gif.src = result.data['additional_info']['gif_url'];
+                gif.style.marginTop = '10px';
+                gif.style.width = '300px';
+                gif.style.height = 'auto';
+                successFeedback.appendChild(gif);
+
+                const img = document.createElement("img");
+                img.src = result.data['additional_info']['img'];
+                img.style.marginTop = '10px';
+                img.style.width = '300px';
+                img.style.height = 'auto';
+                successFeedback.appendChild(img);
+
             } else {
                 const errorMessage = document.createElement("p");
                 errorMessage.classList.add('error-message');
