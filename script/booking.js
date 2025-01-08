@@ -250,7 +250,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 const successFeedbackText = document.createElement("div");
                 const successFeedbackImg = document.createElement("div");
                 successFeedbackImg.style.display = 'flex';
-                successFeedbackImg.style.flexDirection = 'column';
                 successFeedbackImg.style.alignItems = 'center';
                 successFeedback.appendChild(successFeedbackText);
                 successFeedback.appendChild(successFeedbackImg);
@@ -289,7 +288,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 successFeedbackText.appendChild(roomType);
 
                 const features = document.createElement("p");
-                features.textContent = "Features: " + result.data['features'].join(', ');
+                if (result.data['features'].length > 0) {
+                    features.textContent = "Features: " + result.data['features'].join(', ');
+                } else {
+                    features.textContent = "Features: None";
+                }
                 successFeedbackText.appendChild(features);
 
                 const greeting = document.createElement("p");
@@ -298,17 +301,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const gif = document.createElement("img");
                 gif.src = result.data['additional_info']['gif_url'];
+                gif.alt = "matrix gif";
                 gif.style.marginTop = '10px';
                 gif.style.width = '300px';
                 gif.style.height = 'auto';
                 successFeedbackImg.appendChild(gif);
-
-                const img = document.createElement("img");
-                img.src = result.data['additional_info']['img'];
-                img.style.marginTop = '10px';
-                img.style.width = '300px';
-                img.style.height = 'auto';
-                successFeedbackImg.appendChild(img);
 
             } else {
                 const errorMessage = document.createElement("p");
