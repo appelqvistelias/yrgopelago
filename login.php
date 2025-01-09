@@ -43,12 +43,12 @@ require_once __DIR__ . '/header.php';
                         <input type="password" id="password" name="password" required autocomplete="current-password">
                     </div>
                     <div class="login-btn">
-                        <button type="submit" class="eight-bit-btn btn-primary">Login</button>
+                        <button type="submit" class="eight-bit-btn btn-green">Login</button>
                     </div>
                 </div> <!-- .login-input -->
             </form>
             <div class="exit-btn">
-                <a href="index.php" class="eight-bit-btn btn-primary">Exit</a>
+                <a href="index.php" class="eight-bit-btn btn-red">Exit</a>
             </div> <!-- .exit-btn -->
         </div> <!-- .admin-login -->
     </section> <!-- #login -->
