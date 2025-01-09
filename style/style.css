@@ -417,3 +417,13 @@ footer {
     margin-top: 2rem;
     border-top: 2px solid var(--matrix-green);
 }
+
+.footer-flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+}
