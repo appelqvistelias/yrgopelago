@@ -29,6 +29,29 @@ try {
             exit;
         }
 
+        // Check for overlapping bookings
+        $statement = $database->prepare('SELECT COUNT(*) as booking_count FROM bookings WHERE room_type_id = :roomTypeId AND (
+        (start_date <= :endDate AND end_date >= :startDate) OR
+        (start_date >= :startDate AND start_date <= :endDate) OR
+        (end_date >= :startDate AND end_date <= :endDate)
+        );');
+
+        $statement->bindValue(':roomTypeId', $selectedRoom);
+        $statement->bindValue(':startDate', $startDate->format('Y-m-d'));
+        $statement->bindValue(':endDate', $endDate->format('Y-m-d'));
+        $statement->execute();
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if ($result['booking_count'] > 0) {
+            http_response_code(400);
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'The selected room is not available for these dates.'
+            ]);
+            exit;
+        }
+
         // Calculate total number of days
         $dateDifference = $startDate->diff($endDate);
         $totalDays = $dateDifference->days + 1;
