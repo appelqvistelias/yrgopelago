@@ -1,0 +1,51 @@
+/* login.php */
+
+#login {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-login {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    background-color: var(--retro-black);
+    color: var(--matrix-green);
+    border: 0.5px solid var(--matrix-green);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    gap: 1rem;
+    z-index: 0;
+}
+
+#username, #password {
+    background-color: var(--retro-black);
+    border: 2px solid var(--matrix-green);
+    padding: 0.5rem 1rem;
+    font-size: 1.8rem;
+    width: 20rem;
+}
+
+.btn-primary {
+    background-color: var(--submit-btn-background);
+    box-shadow: inset -3px -3px 0px 0px var(--submit-btn-shadow);
+}
+
+.btn-primary:hover {
+    cursor: pointer;
+    background-color: var(--submit-btn-hover);
+    box-shadow: inset -4px -4px 0px 0px var(--submit-btn-shadow);
+}
+
+.btn-primary:active {
+    box-shadow: inset 3px 3px 0px 0px var(--submit-btn-shadow);
+}
+
+.error {
+    color: var(--error-red);
+}
+
+/* admin.php */
