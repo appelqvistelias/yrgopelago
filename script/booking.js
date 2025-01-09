@@ -236,14 +236,12 @@ function createFeedbackElement(text, element) {
 // Booking request feedback
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("booking-form");
-    const successFeedback = document.querySelector(".success-feedback");
     const errorFeedback = document.querySelector(".error-feedback");
 
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         // Clear old feedback
-        clearFeedback(successFeedback);
         clearFeedback(errorFeedback);
 
         // Collect data from form
@@ -259,66 +257,28 @@ document.addEventListener("DOMContentLoaded", () => {
             const result = await response.json();
 
             if (response.ok) {
-                // Booking successful
-                successFeedback.style.display = 'inline-block';
-                errorFeedback.style.display = 'none';
-
-                const successFeedbackText = document.createElement("div");
-                successFeedback.appendChild(successFeedbackText);
-
-                const successFeedbackImg = document.createElement("div");
-                successFeedbackImg.style.display = 'flex';
-                successFeedbackImg.style.alignItems = 'center';
-                successFeedback.appendChild(successFeedbackImg);
-
-                const successMessage = document.createElement("h3");
-                successMessage.classList.add('success-message');
-                successMessage.textContent = "Booking successful!";
-                successFeedbackText.appendChild(successMessage);
-
-                successFeedbackText.appendChild(createFeedbackElement("Island Name: " + result.data['island'], 'p'));
-                successFeedbackText.appendChild(createFeedbackElement("Hotel Name: " + result.data['hotel'], 'p'));
-                successFeedbackText.appendChild(createFeedbackElement("Arrival: " + result.data['arrival_date'], 'p'));
-                successFeedbackText.appendChild(createFeedbackElement("Departure: " + result.data['departure_date'], 'p'));
-                successFeedbackText.appendChild(createFeedbackElement("Total Cost: $" + result.data['total_cost'], 'p'));
-                successFeedbackText.appendChild(createFeedbackElement("Stars: " + result.data['stars'], 'p'));
-                successFeedbackText.appendChild(createFeedbackElement("Room type: " + result.data['room_type'], 'p'));
-
-                const features = document.createElement('p');
-                if (result.data['features'].length > 0) {
-                    features.textContent = "Features: " + result.data['features'].join(', ');
-                } else {
-                    features.textContent = "Features: None";
-                }
-                successFeedbackText.appendChild(features);
-
-                successFeedbackText.appendChild(createFeedbackElement(result.data['additional_info']['greetings'], 'p'));
-
-                const gif = document.createElement("img");
-                gif.src = result.data['additional_info']['gif_url'];
-                gif.alt = "matrix gif";
-                gif.style.marginTop = '10px';
-                gif.style.width = '300px';
-                gif.style.height = 'auto';
-                successFeedbackImg.appendChild(gif);
-
-                // Update calendar
-                const calendarResponse = await fetch('calendar.php');
-                const bookedDates = await calendarResponse.json();
-                createCalendar(bookedDates);
-
+                // Redirect to successful_booking.php with booking data
+                const params = new URLSearchParams({
+                    island: result.data['island'],
+                    hotel: result.data['hotel'],
+                    arrival_date: result.data['arrival_date'],
+                    departure_date: result.data['departure_date'],
+                    total_cost: result.data['total_cost'],
+                    stars: result.data['stars'],
+                    room_type: result.data['room_type'],
+                    features: result.data['features'].join(', '),
+                    greetings: result.data['additional_info']['greetings'],
+                    gif_url: result.data['additional_info']['gif_url']
+                });
+                window.location.href = `successful_booking.php?${params.toString()}`;
             } else {
-                successFeedback.style.display = 'none';
                 errorFeedback.style.display = 'inline-block';
-
                 const errorMessage = createFeedbackElement(`Error: ${result.message}`, 'p');
                 errorMessage.classList.add('error-message');
                 errorFeedback.appendChild(errorMessage);
             }
         } catch (error) {
-            successFeedback.style.display = 'none';
             errorFeedback.style.display = 'inline-block';
-
             const errorMessage = createFeedbackElement(`Something went wrong: ${error.message}`, 'p');
             errorMessage.classList.add('error-message');
             errorFeedback.appendChild(errorMessage);
@@ -330,7 +290,6 @@ document.addEventListener("DOMContentLoaded", () => {
         roomPriceElement.textContent = '$0';
         featuresPriceElement.textContent = '$0';
         totalPriceElement.textContent = '$0';
-        successFeedback.style.display = 'none';
         errorFeedback.style.display = 'none';
     });
 });
