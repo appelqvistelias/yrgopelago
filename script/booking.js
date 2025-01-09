@@ -220,7 +220,20 @@ checkboxes.forEach(checkbox => checkbox.addEventListener('change', () => {
     }
 }));
 
-// User feedback after trying to book
+// Helper functions for form booking feedback
+function clearFeedback(feedbackElement) {
+    while (feedbackElement.firstChild) {
+        feedbackElement.removeChild(feedbackElement.firstChild);
+    }
+}
+
+function createFeedbackElement(text, element) {
+    const feedbackElement = document.createElement(element);
+    feedbackElement.textContent = text;
+    return feedbackElement;
+}
+
+// Booking request feedback
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("booking-form");
     const successFeedback = document.querySelector(".success-feedback");
@@ -230,12 +243,8 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
 
         // Clear old feedback
-        while (successFeedback.firstChild) {
-            successFeedback.removeChild(successFeedback.firstChild);
-        }
-        while (errorFeedback.firstChild) {
-            errorFeedback.removeChild(errorFeedback.firstChild);
-        }
+        clearFeedback(successFeedback);
+        clearFeedback(errorFeedback);
 
         // Collect data from form
         const formData = new FormData(form);
@@ -253,11 +262,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Booking successful
                 successFeedback.style.display = 'inline-block';
                 errorFeedback.style.display = 'none';
+
                 const successFeedbackText = document.createElement("div");
+                successFeedback.appendChild(successFeedbackText);
+
                 const successFeedbackImg = document.createElement("div");
                 successFeedbackImg.style.display = 'flex';
                 successFeedbackImg.style.alignItems = 'center';
-                successFeedback.appendChild(successFeedbackText);
                 successFeedback.appendChild(successFeedbackImg);
 
                 const successMessage = document.createElement("h3");
@@ -265,35 +276,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 successMessage.textContent = "Booking successful!";
                 successFeedbackText.appendChild(successMessage);
 
-                const islandName = document.createElement("p");
-                islandName.textContent = "Island Name: " + result.data['island'];
-                successFeedbackText.appendChild(islandName);
+                successFeedbackText.appendChild(createFeedbackElement("Island Name: " + result.data['island'], 'p'));
+                successFeedbackText.appendChild(createFeedbackElement("Hotel Name: " + result.data['hotel'], 'p'));
+                successFeedbackText.appendChild(createFeedbackElement("Arrival: " + result.data['arrival_date'], 'p'));
+                successFeedbackText.appendChild(createFeedbackElement("Departure: " + result.data['departure_date'], 'p'));
+                successFeedbackText.appendChild(createFeedbackElement("Total Cost: $" + result.data['total_cost'], 'p'));
+                successFeedbackText.appendChild(createFeedbackElement("Stars: " + result.data['stars'], 'p'));
+                successFeedbackText.appendChild(createFeedbackElement("Room type: " + result.data['room_type'], 'p'));
 
-                const hotelName = document.createElement("p");
-                hotelName.textContent = "Hotel Name: " + result.data['hotel'];
-                successFeedbackText.appendChild(hotelName);
-
-                const arrivalDate = document.createElement("p");
-                arrivalDate.textContent = "Arrival: " + result.data['arrival_date'];
-                successFeedbackText.appendChild(arrivalDate);
-
-                const departureDate = document.createElement("p");
-                departureDate.textContent = "Departure: " + result.data['departure_date'];
-                successFeedbackText.appendChild(departureDate);
-
-                const totalCost = document.createElement("p");
-                totalCost.textContent = "Total Cost: $" + result.data['total_cost'];
-                successFeedbackText.appendChild(totalCost);
-                
-                const stars = document.createElement("p");
-                stars.textContent = "Stars: " + result.data['stars'];
-                successFeedbackText.appendChild(stars);
-
-                const roomType = document.createElement("p");
-                roomType.textContent = "Room type: " + result.data['room_type'];
-                successFeedbackText.appendChild(roomType);
-
-                const features = document.createElement("p");
+                const features = document.createElement('p');
                 if (result.data['features'].length > 0) {
                     features.textContent = "Features: " + result.data['features'].join(', ');
                 } else {
@@ -301,9 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 successFeedbackText.appendChild(features);
 
-                const greeting = document.createElement("p");
-                greeting.textContent = result.data['additional_info']['greetings'];
-                successFeedbackText.appendChild(greeting);
+                successFeedbackText.appendChild(createFeedbackElement(result.data['additional_info']['greetings'], 'p'));
 
                 const gif = document.createElement("img");
                 gif.src = result.data['additional_info']['gif_url'];
@@ -319,20 +308,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 createCalendar(bookedDates);
 
             } else {
-                const errorMessage = document.createElement("p");
-                errorMessage.classList.add('error-message');
-                errorMessage.textContent = `Error: ${result.message}`;
-                errorFeedback.appendChild(errorMessage);
                 successFeedback.style.display = 'none';
                 errorFeedback.style.display = 'inline-block';
+
+                const errorMessage = createFeedbackElement(`Error: ${result.message}`, 'p');
+                errorMessage.classList.add('error-message');
+                errorFeedback.appendChild(errorMessage);
             }
         } catch (error) {
-            const errorMessage = document.createElement("p");
-            errorMessage.classList.add('error-message');
-            errorMessage.textContent = `Something went wrong: ${error.message}`;
-            errorFeedback.appendChild(errorMessage);
             successFeedback.style.display = 'none';
             errorFeedback.style.display = 'inline-block';
+
+            const errorMessage = createFeedbackElement(`Something went wrong: ${error.message}`, 'p');
+            errorMessage.classList.add('error-message');
+            errorFeedback.appendChild(errorMessage);
         }
     });
 
