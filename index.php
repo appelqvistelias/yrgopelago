@@ -164,9 +164,6 @@ require_once __DIR__ . '/header.php';
                         </div> <!-- .button-container -->
                     </form>
 
-                    <div class="success-feedback">
-                    </div> <!-- .user-feedback -->
-
                     <div class="error-feedback">
                     </div> <!-- .error-message -->
 
