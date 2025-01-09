@@ -321,14 +321,28 @@ select {
 }
 
 /* Booking feedback */
+#successful-booking {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .success-feedback {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--retro-black);
+    color: var(--matrix-green);
+    font-size: 3rem;
     border: 2px solid var(--matrix-green);
-    padding: 1rem;
+    padding: 2rem;
 }
 
-.success-message {
-    color: var(--matrix-green);
+.success-gif {
+    margin-top: 1rem;
+    width: 45rem;
+    height: auto;
 }
 
 .error-feedback {
