@@ -1,9 +1,13 @@
-This is a school project with the purpose to create a hotel with a booking system using HTML, CSS, PHP and JavaScript. The project will also include the usage of API.
+This is a school project with the purpose of creating a hotel website with a booking system, using HTML, CSS, PHP, JavaScript, and SQL. The project also incorporates the use of an API.
 
-Based on the assignment requirements, the site is optimized for desktop use only, and the booking system is restricted to January 2025.
+Based on the assignment requirements, the site is optimized for desktop use only, and the booking system is restricted to January 2025. However, this limitation can easily be adjusted in the code.
+
+The project also makes use of Composer.
+
+Since the database is not included in the repository, you will need to create one yourself using the queries provided below. Place the database in a subfolder named 'database' within the project's root directory.
 
 Database structure:
-```
+```sql
 CREATE TABLE IF NOT EXISTS room_types (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
 type VARCHAR(255),
