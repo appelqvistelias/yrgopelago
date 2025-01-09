@@ -1,13 +1,11 @@
-/* login.php */
-
-#login {
+#login, #admin-dashboard {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.admin-login {
+.admin-login, .admin-dashboard-container {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -20,6 +18,7 @@
     z-index: 0;
 }
 
+/* login.php */
 .login-input {
     display: flex;
     flex-direction: column;

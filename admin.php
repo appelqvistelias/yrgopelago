@@ -13,7 +13,13 @@ require_once __DIR__ . '/header.php';
 <main>
     <section id="admin-dashboard">
         <canvas id="matrix-drops"></canvas>
-        <a href="logout.php" class="eight-bit-btn">Logout</a>
+        <div class="admin-dashboard-container">
+            <h1>Admin Dashboard</h1>
+
+            <div>
+                <a href="logout.php" class="eight-bit-btn btn-primary">Logout</a>
+            </div>
+        </div> <!-- .admin-dashboard-container -->
         </div> <!-- .admin-dashboard -->
     </section> <!-- #admin-dashboard -->
 </main>
