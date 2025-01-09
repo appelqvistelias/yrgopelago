@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style/global.css">
-    <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/typography.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/admin.css">
 
     <!-- Fonts: Bebas Neue, IBM Plex Sans, Inter, Roboto, Press Start P2, VT323 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
