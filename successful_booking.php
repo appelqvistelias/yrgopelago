@@ -31,7 +31,7 @@ require_once __DIR__ . '/header.php';
                 <p>Features: <?= $features ?></p>
                 <p><?= $greetings ?></p>
             </div>
-            <img class="success-gif" src="<?= $gif_url ?>" alt="Success GIF" style="margin-top: 10px; width: 300px; height: auto;">
+            <img class="success-gif" src="<?= $gif_url ?>" alt="Success GIF">
         </div> <!-- success-feedback -->
     </section> <!-- successful-booking -->
 </main>

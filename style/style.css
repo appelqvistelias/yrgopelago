@@ -334,13 +334,15 @@ select {
     gap: 0.5rem;
     background-color: var(--retro-black);
     color: var(--matrix-green);
-    font-size: 2rem;
+    font-size: 3rem;
     border: 2px solid var(--matrix-green);
     padding: 2rem;
 }
 
 .success-gif {
     margin-top: 1rem;
+    width: 45rem;
+    height: auto;
 }
 
 .error-feedback {
