@@ -6,6 +6,8 @@
 }
 
 .admin-login, .admin-dashboard-container {
+    max-height: 80vh;
+    overflow-y: auto;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -39,23 +41,23 @@
     bottom: 2.5rem;
 }
 
-.btn-primary {
-    background-color: var(--submit-btn-background);
-    box-shadow: inset -3px -3px 0px 0px var(--submit-btn-shadow);
-}
-
-.btn-primary:hover {
-    cursor: pointer;
-    background-color: var(--submit-btn-hover);
-    box-shadow: inset -4px -4px 0px 0px var(--submit-btn-shadow);
-}
-
-.btn-primary:active {
-    box-shadow: inset 3px 3px 0px 0px var(--submit-btn-shadow);
-}
-
 .error {
     color: var(--error-red);
 }
 
 /* admin.php */
+.top-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+table {
+    border: 2px solid var(--matrix-green);
+    padding: 1rem;
+}
+
+th, td {
+    border-right: 2px solid var(--matrix-green);
+    border-bottom: 2px solid var(--matrix-green);
+    padding: 0.5rem;
+}
