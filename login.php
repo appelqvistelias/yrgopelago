@@ -29,20 +29,27 @@ require_once __DIR__ . '/header.php';
         <div class="admin-login">
             <h2>Admin Login</h2>
             <?php if (isset($error)): ?>
-                <p class="error"><?php echo $error; ?></p>
+                <p class="error"><?= $error; ?></p>
             <?php endif; ?>
 
-            <form method="post" action="login.php">
-                <div>
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
-                </div>
-                <div>
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <button type="submit" class="eight-bit-btn btn-primary">Login</button>
+            <form method="post" action="login.php" autocomplete="off">
+                <div class="login-input">
+                    <div>
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required autocomplete="username">
+                    </div>
+                    <div>
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required autocomplete="current-password">
+                    </div>
+                    <div class="login-btn">
+                        <button type="submit" class="eight-bit-btn btn-primary">Login</button>
+                    </div>
+                </div> <!-- .login-input -->
             </form>
+            <div class="exit-btn">
+                <a href="index.php" class="eight-bit-btn btn-primary">Exit</a>
+            </div> <!-- .exit-btn -->
         </div> <!-- .admin-login -->
     </section> <!-- #login -->
 </main>
