@@ -14,8 +14,30 @@ try {
     $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Clear bookings and booking_features tables
-    $database->exec('DELETE FROM booking_features');
-    $database->exec('DELETE FROM bookings');
+    $database->exec('DROP TABLE bookings;');
+    $database->exec('DROP TABLE booking_features;');
+
+    $database->exec('CREATE TABLE IF NOT EXISTS bookings (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        first_name VARCHAR(255) NOT NULL,
+        last_name VARCHAR(255) NOT NULL,
+        start_date DATE NOT NULL,
+        end_date DATE NOT NULL,
+        room_type_id INTEGER NOT NULL,
+        total_cost INTEGER NOT NULL,
+        transfer_code TEXT NOT NULL,
+        
+        FOREIGN KEY (room_type_id) REFERENCES room_types(id)
+        );');
+
+    $database->exec('CREATE TABLE IF NOT EXISTS booking_features (
+        booking_id INTEGER NOT NULL,
+        feature_id INTEGER NOT NULL,
+        PRIMARY KEY (booking_id, feature_id),
+        
+        FOREIGN KEY (booking_id) REFERENCES bookings(id) ON DELETE CASCADE,
+        FOREIGN KEY (feature_id) REFERENCES features(id) ON DELETE CASCADE
+        );');
 
     header('Location: admin.php');
     exit;

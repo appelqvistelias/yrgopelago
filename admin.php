@@ -31,7 +31,7 @@ require_once __DIR__ . '/header.php';
             <div class="top-container">
                 <h1>Admin Dashboard</h1>
                 <div class="admin-buttons">
-                    <form method="post" action="clear_tables.php">
+                    <form method="post" action="clear_bookings.php">
                         <button type="submit" class="eight-bit-btn btn-red">Clear All</button>
                     </form>
                     <a href="logout.php" class="eight-bit-btn btn-red">Logout</a>
