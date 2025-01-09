@@ -1,6 +1,9 @@
 <footer>
     <div class="inner-wrapper">
-        <p>&copy; 2025 Back-End Hotel</p>
+        <div class="footer-flex-container">
+            <p>&copy; 2025 Back-End Hotel</p>
+            <a href="login.php" class="eight-bit-btn btn-primary">Admin Login</a>
+        </div>
     </div> <!-- .inner-wrapper -->
 </footer>
 
