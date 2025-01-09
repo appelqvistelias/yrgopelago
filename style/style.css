@@ -374,33 +374,33 @@ select {
     height: 115%;
 }
 
-.btn-submit {
+.btn-green {
     background-color: var(--submit-btn-background);
     box-shadow: inset -3px -3px 0px 0px var(--submit-btn-shadow);
 }
 
-.btn-clear {
+.btn-red {
     background-color: var(--clear-btn-background);
     box-shadow: inset -3px -3px 0px 0px var(--clear-btn-shadow);
 }
 
-.btn-submit:hover {
+.btn-green:hover {
     cursor: pointer;
     background-color: var(--submit-btn-hover);
     box-shadow: inset -4px -4px 0px 0px var(--submit-btn-shadow);
 }
 
-.btn-submit:active {
+.btn-green:active {
     box-shadow: inset 3px 3px 0px 0px var(--submit-btn-shadow);
 }
 
-.btn-clear:hover {
+.btn-red:hover {
     cursor: pointer;
     background-color: var(--clear-btn-hover);
     box-shadow: inset -4px -4px 0px 0px var(--clear-btn-shadow);
 }
 
-.btn-clear:active {
+.btn-red:active {
     box-shadow: inset 3px 3px 0px 0px var(--clear-btn-shadow);
 }
 

@@ -2,7 +2,7 @@
     <div class="inner-wrapper">
         <div class="footer-flex-container">
             <p>&copy; 2025 Back-End Hotel</p>
-            <a href="login.php" class="eight-bit-btn btn-primary">Admin Login</a>
+            <a href="login.php" class="eight-bit-btn btn-green">Admin Login</a>
         </div>
     </div> <!-- .inner-wrapper -->
 </footer>
