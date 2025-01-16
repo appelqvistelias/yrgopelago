@@ -7,7 +7,7 @@
     </div> <!-- .inner-wrapper -->
 </footer>
 
-<script src="script/booking.js"></script>
-<script src="script/styling.js"></script>
-<script src="script/digital-rain-effect.js"></script>
+<script src="assets/script/booking.js"></script>
+<script src="assets/script/styling.js"></script>
+<script src="assets/script/digital-rain-effect.js"></script>
 </body>

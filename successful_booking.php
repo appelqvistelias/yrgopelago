@@ -39,5 +39,5 @@ require_once __DIR__ . '/header.php';
     </section> <!-- successful-booking -->
 </main>
 
-<script src="script/digital-rain-effect.js"></script>
+<script src="assets/script/digital-rain-effect.js"></script>
 </body>
