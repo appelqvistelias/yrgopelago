@@ -3,4 +3,3 @@ vendor
 .DS_Store
 database
 error.log
-test-gitignore.txt
