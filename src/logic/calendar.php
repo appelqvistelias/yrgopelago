@@ -5,7 +5,7 @@ declare(strict_types=1);
 header('Content-Type: application/json');
 
 try {
-    $database = new PDO('sqlite:database/bookings.db');
+    $database = new PDO('sqlite:../../database/bookings.db');
     $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $statement = $database->prepare("SELECT start_date, end_date, room_type_id FROM bookings");

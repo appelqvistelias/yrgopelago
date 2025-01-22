@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/init.php";
+require_once __DIR__ . "/../../init.php";
 
 // Check if user is already logged in
 if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
@@ -8,7 +8,7 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
 }
 
 try {
-    $database = new PDO('sqlite:' . __DIR__ . '/database/bookings.db');
+    $database = new PDO('sqlite:' . __DIR__ . '/../../database/bookings.db');
     $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Fetch all bookings to display
@@ -31,10 +31,10 @@ require_once __DIR__ . '/header.php';
             <div class="top-container">
                 <h1>Admin Dashboard</h1>
                 <div class="admin-buttons">
-                    <form method="post" action="clear_bookings.php">
+                    <form method="post" action="../logic/clear_bookings.php">
                         <button type="submit" class="eight-bit-btn btn-red">Clear All</button>
                     </form>
-                    <a href="logout.php" class="eight-bit-btn btn-red">Logout</a>
+                    <a href="../logic/logout.php" class="eight-bit-btn btn-red">Logout</a>
                 </div>
             </div>
             <div class="bookings-table">
@@ -71,5 +71,5 @@ require_once __DIR__ . '/header.php';
     </section> <!-- #admin-dashboard -->
 </main>
 
-<script src="assets/script/digital-rain-effect.js"></script>
+<script src="../../assets/script/digital-rain-effect.js"></script>
 </body>

@@ -1,16 +1,16 @@
 <?php
 
 declare(strict_types=1);
-require_once __DIR__ . "/init.php";
+require_once __DIR__ . "/../../init.php";
 
 // Check if user is logged in
 if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
-    header('Location: login.php');
+    header('Location: ../view/login.php');
     exit;
 }
 
 try {
-    $database = new PDO('sqlite:' . __DIR__ . '/database/bookings.db');
+    $database = new PDO('sqlite:' . __DIR__ . '/../../database/bookings.db');
     $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Clear bookings and booking_features tables
@@ -39,7 +39,7 @@ try {
         FOREIGN KEY (feature_id) REFERENCES features(id) ON DELETE CASCADE
         );');
 
-    header('Location: admin.php');
+    header('Location: ../view/admin.php');
     exit;
 } catch (PDOException $e) {
     error_log("Database error: " . $e->getMessage());

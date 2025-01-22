@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/init.php";
+require_once __DIR__ . "/../../init.php";
 
 $island = htmlspecialchars($_GET['island']);
 $hotel = htmlspecialchars($_GET['hotel']);
@@ -33,11 +33,11 @@ require_once __DIR__ . '/header.php';
             </div>
             <img class="success-gif" src="<?= $gif_url ?>" alt="Success GIF">
             <div class="back-to-index-btn">
-                <a href="index.php" class="eight-bit-btn btn-green">Back</a>
+                <a href="../../index.php" class="eight-bit-btn btn-green">Back</a>
             </div> <!-- back-to-index-btn -->
         </div> <!-- success-feedback -->
     </section> <!-- successful-booking -->
 </main>
 
-<script src="assets/script/digital-rain-effect.js"></script>
+<script src="../../assets/script/digital-rain-effect.js"></script>
 </body>

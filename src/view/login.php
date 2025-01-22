@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/init.php";
+require_once __DIR__ . "/../../init.php";
 
 // Check if user is already logged in
 if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
@@ -48,11 +48,11 @@ require_once __DIR__ . '/header.php';
                 </div> <!-- .login-input -->
             </form>
             <div class="exit-btn">
-                <a href="index.php" class="eight-bit-btn btn-red">Exit</a>
+                <a href="../../index.php" class="eight-bit-btn btn-red">Exit</a>
             </div> <!-- .exit-btn -->
         </div> <!-- .admin-login -->
     </section> <!-- #login -->
 </main>
 
-<script src="assets/script/digital-rain-effect.js"></script>
+<script src="../../assets/script/digital-rain-effect.js"></script>
 </body>

@@ -9,7 +9,7 @@ ini_set('error_log', __DIR__ . '/error.log'); // Set error log file
 session_start();
 
 require_once __DIR__ . "/vendor/autoload.php";
-require_once __DIR__ . "/functions.php";
+require_once __DIR__ . "/src/logic/functions.php";
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/config');
 $dotenv->load();
