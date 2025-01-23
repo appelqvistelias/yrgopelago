@@ -270,7 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     greetings: result.data['additional_info']['greetings'],
                     gif_url: result.data['additional_info']['gif_url']
                 });
-                window.location.href = `../../src/view/successful_booking.php?${params.toString()}`;
+                window.location.href = `src/view/successful_booking.php?${params.toString()}`;
             } else {
                 errorFeedback.style.display = 'inline-block';
                 const errorMessage = createFeedbackElement(`Error: ${result.message}`, 'p');
