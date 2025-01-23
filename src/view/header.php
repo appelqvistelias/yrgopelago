@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../../assets/style/global.css">
-    <link rel="stylesheet" href="../../assets/style/typography.css">
-    <link rel="stylesheet" href="../../assets/style/style.css">
-    <link rel="stylesheet" href="../../assets/style/admin.css">
+    <link rel="stylesheet" href="<?= $basePath; ?>assets/style/global.css">
+    <link rel="stylesheet" href="<?= $basePath; ?>assets/style/typography.css">
+    <link rel="stylesheet" href="<?= $basePath; ?>assets/style/style.css">
+    <link rel="stylesheet" href="<?= $basePath; ?>assets/style/admin.css">
 
     <!-- Fonts: Bebas Neue, IBM Plex Sans, Inter, Roboto, Press Start P2, VT323 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

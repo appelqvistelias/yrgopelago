@@ -11,5 +11,9 @@ session_start();
 require_once __DIR__ . "/vendor/autoload.php";
 require_once __DIR__ . "/src/logic/functions.php";
 
+$basePath = (basename($_SERVER['PHP_SELF']) === 'index.php')
+    ? ''
+    : '../../';
+
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/config');
 $dotenv->load();
