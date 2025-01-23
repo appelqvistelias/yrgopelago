@@ -93,7 +93,7 @@ function filterRoomOptions(bookedDates) {
 }
 
 // Check room-date availability
-fetch('../../src/logic/calendar.php')
+fetch('src/logic/calendar.php')
     .then(response => {
         if (!response.ok) {
             throw new Error('Failed to fetch booked dates');
